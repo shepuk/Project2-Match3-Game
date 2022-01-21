@@ -1,0 +1,12 @@
+/* Want grid to be 9x9, 60px per square - 60*9=540 */
+.game-area {
+    height: 540px;
+    width: 540px;
+    display: flex; /* flex & flex-wrap will allow the grid divs to wrap round and start a new row */
+    flex-wrap: wrap;
+}
+
+.game-area div {
+    height: 60px;
+    width: 60px;
+}
