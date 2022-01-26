@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * get the colour value of the above tile and replace the epmty tile with that colour
      */
     function repopulateEmptyTiles() {
+        //Move tiles down
         for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth; i++) {
             if (tiles[i + playAreaWidth].style.backgroundColor === '') {
                 tiles[i + playAreaWidth].style.backgroundColor = tiles[i].style.backgroundColor;
@@ -109,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const topRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
             const isTopRow = topRow.includes(i);
 
+            //Repopulate empty tiles with random colours
             if (isTopRow && tiles[i].style.backgroundColor === '') {
                 let randomColor = Math.floor(Math.random() * tileColors.length);
                 tiles[i].style.backgroundColor = tileColors[randomColor];
@@ -122,34 +124,46 @@ document.addEventListener('DOMContentLoaded', () => {
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
 
-            const lastTwoRows = [
+            const lastThreeRows = [
+                playAreaWidth -3,
                 playAreaWidth - 2,
                 playAreaWidth -1,
+                playAreaWidth * 2 -3,
                 playAreaWidth * 2 -2,
                 playAreaWidth * 2 -1,
+                playAreaWidth * 3 -3,
                 playAreaWidth * 3 -2,
                 playAreaWidth * 3 -1,
+                playAreaWidth * 4 -3,
                 playAreaWidth * 4 -2,
                 playAreaWidth * 4 -1,
+                playAreaWidth * 5 -3,
                 playAreaWidth * 5 -2,
                 playAreaWidth * 5 -1,
+                playAreaWidth * 6 -3,
                 playAreaWidth * 6 -2,
                 playAreaWidth * 6 -1,
+                playAreaWidth * 7 -3,
                 playAreaWidth * 7 -2,
                 playAreaWidth * 7 -1,
+                playAreaWidth * 8 -3,
                 playAreaWidth * 8 -2,
                 playAreaWidth * 8 -1,
+                playAreaWidth * 9 -3,
                 playAreaWidth * 9 -2,
                 playAreaWidth * 9 -1,
+                playAreaWidth * 10 -3,
                 playAreaWidth * 10 -2,
                 playAreaWidth * 10 -1,
+                playAreaWidth * 11 -3,
                 playAreaWidth * 11 -2,
                 playAreaWidth * 11 -1,
+                playAreaWidth * 12 -3,
                 playAreaWidth * 12 -2,
                 playAreaWidth * 12 -1,
             ]
 
-            if (lastTwoRows.includes(i)) continue;
+            if (lastThreeRows.includes(i)) continue;
 
             if (fourHorizontal.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
                 fourHorizontal.forEach(index => {
@@ -243,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //bug resolved - in the repopoulate empty tiles function, errors were thrown when the loop was firing. Because + playareawidth on the bottom row did not exist. Fixed by ending the loop one row from bottom
 //Bug found - colour change not working when switching tiles with first tile in the array (top left)
-//bug found - sometimes not all tiles repopulate at the top row when making matches - resolved by moving the repopulate code out of the repopulateEmptyTiles for loop and executing this function before the match detecting functions
+//bug found - sometimes not all tiles repopulate at the top row when making matches - resolved by moving the repopulate code out of the repopulateEmptyTiles first if statement and executing this function before the match detecting functions
 
 //CURRENT DESIRED FEATURE LIST
 //Detect valid moves (up, down, left, right)
@@ -256,8 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
 //Animate tiles - both swapping tiles and hovering over tiles (possibly achieve this with jQuery)
 //menu to start game and show controls
 //contact page using email API
-
-//EXTRAS IF TIME ALLOWS
 //high scores
 //incorporate timer and / or score
 //images on tiles for a better overall look
