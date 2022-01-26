@@ -95,6 +95,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    /**
+     * loops through tiles on the game board, when an empty tile is found,
+     * get the colour value of the above tile and replace the epmty tile with that colour
+     */
+    function repopulateEmptyTiles() {
+        for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth; i++) {
+            if (tiles[i + playAreaWidth].style.backgroundColor === '') {
+                tiles[i + playAreaWidth].style.backgroundColor = tiles[i].style.backgroundColor;
+                tiles[i].style.backgroundColor = '';  
+            }
+
+            const topRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+            const isTopRow = topRow.includes(i);
+
+            if (isTopRow && tiles[i].style.backgroundColor === '') {
+                let randomColor = Math.floor(Math.random() * tileColors.length);
+                tiles[i].style.backgroundColor = tileColors[randomColor];
+            }
+        }
+    }
+
     function checkThreeHorizontal() {
         for (i = 0; i < playAreaHeight * playAreaWidth - 2; i++) { //this loop stops at the tile two left of bottom right
             let threeHorizontal = [i, i+1, i+2];
@@ -151,23 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /**
-     * loops through tiles on the game board, when an empty tile is found,
-     * get the colour value of the above tile and replace the epmty tile with that colour
-     */
-    function repopulateEmptyTiles() {
-        for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth; i++) {
-            if (tiles[i + playAreaWidth].style.backgroundColor === '') {
-                tiles[i + playAreaWidth].style.backgroundColor = tiles[i].style.backgroundColor;
-                tiles[i].style.backgroundColor = '';
-            }
-        }
-    }
-
     window.setInterval(function() {
+        repopulateEmptyTiles(),
         checkThreeHorizontal(),
-        checkThreeVertical(),
-        repopulateEmptyTiles()
+        checkThreeVertical()
     }, 100)
 
 })
@@ -175,7 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //TODO!
 
+//bug resolved - in the repopoulate empty tiles function, errors were thrown when the loop was firing. Because + playareawidth on the bottom row did not exist. Fixed by ending the loop one row from bottom
 //Bug found - colour change not working when switching tiles with first tile in the array (top left)
+//bug found - sometimes not all tiles repopulate at the top row when making matches - resolved by moving the repopulate code out of the repopulateEmptyTiles for loop and executing this function before the match detecting functions
 
 //CURRENT DESIRED FEATURE LIST
 //Detect valid moves (up, down, left, right)
