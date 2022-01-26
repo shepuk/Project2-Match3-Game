@@ -116,6 +116,62 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function checkFourHorizontal() {
+        for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile two left of bottom right
+            let fourHorizontal = [i, i+1, i+2 , i+3];
+            let selectedColor = tiles[i].style.backgroundColor;
+            const blankTile = tiles[i].style.backgroundColor === '';
+
+            const lastTwoRows = [
+                playAreaWidth - 2,
+                playAreaWidth -1,
+                playAreaWidth * 2 -2,
+                playAreaWidth * 2 -1,
+                playAreaWidth * 3 -2,
+                playAreaWidth * 3 -1,
+                playAreaWidth * 4 -2,
+                playAreaWidth * 4 -1,
+                playAreaWidth * 5 -2,
+                playAreaWidth * 5 -1,
+                playAreaWidth * 6 -2,
+                playAreaWidth * 6 -1,
+                playAreaWidth * 7 -2,
+                playAreaWidth * 7 -1,
+                playAreaWidth * 8 -2,
+                playAreaWidth * 8 -1,
+                playAreaWidth * 9 -2,
+                playAreaWidth * 9 -1,
+                playAreaWidth * 10 -2,
+                playAreaWidth * 10 -1,
+                playAreaWidth * 11 -2,
+                playAreaWidth * 11 -1,
+                playAreaWidth * 12 -2,
+                playAreaWidth * 12 -1,
+            ]
+
+            if (lastTwoRows.includes(i)) continue;
+
+            if (fourHorizontal.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+                fourHorizontal.forEach(index => {
+                    tiles[index].style.backgroundColor = '';
+                })
+            }
+        }
+    }
+
+    function checkFourVertical() {
+        for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth -playAreaWidth; i++) { //this loop ends at the tile three north of bottom-right
+            let fourVertical = [i, i+playAreaWidth, i+playAreaWidth*2, i+playAreaWidth*3];
+            let selectedColor = tiles[i].style.backgroundColor;
+            const blankTile = tiles[i].style.backgroundColor === '';
+            if (fourVertical.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+                fourVertical.forEach(index => {
+                    tiles[index].style.backgroundColor = '';
+                })
+            }
+        }
+    }
+
     function checkThreeHorizontal() {
         for (i = 0; i < playAreaHeight * playAreaWidth - 2; i++) { //this loop stops at the tile two left of bottom right
             let threeHorizontal = [i, i+1, i+2];
@@ -174,6 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.setInterval(function() {
         repopulateEmptyTiles(),
+        checkFourHorizontal(),
+        checkFourVertical(),
         checkThreeHorizontal(),
         checkThreeVertical()
     }, 100)
