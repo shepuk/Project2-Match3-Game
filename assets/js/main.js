@@ -100,6 +100,36 @@ document.addEventListener('DOMContentLoaded', () => {
             let threeHorizontal = [i, i+1, i+2];
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
+
+            const lastTwoRows = [
+                playAreaWidth - 2,
+                playAreaWidth -1,
+                playAreaWidth * 2 -2,
+                playAreaWidth * 2 -1,
+                playAreaWidth * 3 -2,
+                playAreaWidth * 3 -1,
+                playAreaWidth * 4 -2,
+                playAreaWidth * 4 -1,
+                playAreaWidth * 5 -2,
+                playAreaWidth * 5 -1,
+                playAreaWidth * 6 -2,
+                playAreaWidth * 6 -1,
+                playAreaWidth * 7 -2,
+                playAreaWidth * 7 -1,
+                playAreaWidth * 8 -2,
+                playAreaWidth * 8 -1,
+                playAreaWidth * 9 -2,
+                playAreaWidth * 9 -1,
+                playAreaWidth * 10 -2,
+                playAreaWidth * 10 -1,
+                playAreaWidth * 11 -2,
+                playAreaWidth * 11 -1,
+                playAreaWidth * 12 -2,
+                playAreaWidth * 12 -1,
+            ]
+
+            if (lastTwoRows.includes(i)) continue;
+
             if (threeHorizontal.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
                 threeHorizontal.forEach(index => {
                     tiles[index].style.backgroundColor = '';
@@ -121,9 +151,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    /**
+     * loops through tiles on the game board, when an empty tile is found,
+     * get the colour value of the above tile and replace the epmty tile with that colour
+     */
+    function repopulateEmptyTiles() {
+        for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth; i++) {
+            if (tiles[i + playAreaWidth].style.backgroundColor === '') {
+                tiles[i + playAreaWidth].style.backgroundColor = tiles[i].style.backgroundColor;
+                tiles[i].style.backgroundColor = '';
+            }
+        }
+    }
+
     window.setInterval(function() {
         checkThreeHorizontal(),
-        checkThreeVertical()
+        checkThreeVertical(),
+        repopulateEmptyTiles()
     }, 100)
 
 })
