@@ -1,16 +1,28 @@
 /* Want grid to be 9x9, 60px per square - 60*9=540 */
 .game-area {
+    margin: auto;
+    margin-top: 5%;
     height: 540px;
     width: 540px;
     display: flex; /* flex & flex-wrap will allow the grid divs to wrap round and start a new row */
     flex-wrap: wrap;
+    box-shadow: 0 0 0 10px white;
+    border-radius: 5px;
+    background-color: black;
 }
 
 .game-area div {
     height: 60px;
     width: 60px;
+    box-shadow: inset 0 0 0 1px white;
 }
 
 body {
-    background-color: black;
+    background: rgb(4,0,34);
+    background: linear-gradient(90deg, rgba(4,0,34,1) 0%, rgba(33,33,3,1) 45%, rgba(0,40,48,1) 100%);
+}
+
+.title-text {
+    color: white;
+    margin-top: 5%;
 }
