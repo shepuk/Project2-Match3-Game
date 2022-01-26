@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const playAreaHeight = 9;
     const playAreaWidth = 9;
     const tiles = []; //array to hold created tile/div elements
+    let score = 0;
 
     const tileColors = [ //colours generated at coolors.co
         '#7B7554',
@@ -94,7 +95,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    
+    function checkThreeHorizontal() {
+        for (i = 0; i < playAreaHeight * playAreaWidth - 2; i++) { //this loop stops at the tile two left of bottom right
+            let threeHorizontal = [i, i+1, i+2];
+            let selectedColor = tiles[i].style.backgroundColor;
+            const blankTile = tiles[i].style.backgroundColor === '';
+            if (threeHorizontal.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+                threeHorizontal.forEach(index => {
+                    tiles[index].style.backgroundColor = '';
+                })
+            }
+        }
+    }
+
+    function checkThreeVertical() {
+        for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth; i++) { //this loop ends at the tile two north of bottom-right
+            let threeVertical = [i, i+playAreaWidth, i+playAreaWidth*2];
+            let selectedColor = tiles[i].style.backgroundColor;
+            const blankTile = tiles[i].style.backgroundColor === '';
+            if (threeVertical.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+                threeVertical.forEach(index => {
+                    tiles[index].style.backgroundColor = '';
+                })
+            }
+        }
+    }
+
+    window.setInterval(function() {
+        checkThreeHorizontal(),
+        checkThreeVertical()
+    }, 100)
 
 })
 
