@@ -118,6 +118,86 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function checkFiveHorizontal() {
+        for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile two left of bottom right
+            let fiveHorizontal = [i, i+1, i+2 , i+3, i+4];
+            let selectedColor = tiles[i].style.backgroundColor;
+            const blankTile = tiles[i].style.backgroundColor === '';
+
+            const lastFourRows = [
+                playAreaWidth -4,
+                playAreaWidth -3,
+                playAreaWidth - 2,
+                playAreaWidth -1,
+                playAreaWidth * 2 -4,
+                playAreaWidth * 2 -3,
+                playAreaWidth * 2 -2,
+                playAreaWidth * 2 -1,
+                playAreaWidth * 3 -4,
+                playAreaWidth * 3 -3,
+                playAreaWidth * 3 -2,
+                playAreaWidth * 3 -1,
+                playAreaWidth * 4 -4,
+                playAreaWidth * 4 -3,
+                playAreaWidth * 4 -2,
+                playAreaWidth * 4 -1,
+                playAreaWidth * 2 -4,
+                playAreaWidth * 5 -3,
+                playAreaWidth * 5 -2,
+                playAreaWidth * 5 -1,
+                playAreaWidth * 6 -4,
+                playAreaWidth * 6 -3,
+                playAreaWidth * 6 -2,
+                playAreaWidth * 6 -1,
+                playAreaWidth * 7 -4,
+                playAreaWidth * 7 -3,
+                playAreaWidth * 7 -2,
+                playAreaWidth * 7 -1,
+                playAreaWidth * 8 -4,
+                playAreaWidth * 8 -3,
+                playAreaWidth * 8 -2,
+                playAreaWidth * 8 -1,
+                playAreaWidth * 9 -4,
+                playAreaWidth * 9 -3,
+                playAreaWidth * 9 -2,
+                playAreaWidth * 9 -1,
+                playAreaWidth * 10 -4,
+                playAreaWidth * 10 -3,
+                playAreaWidth * 10 -2,
+                playAreaWidth * 10 -1,
+                playAreaWidth * 11 -4,
+                playAreaWidth * 11 -3,
+                playAreaWidth * 11 -2,
+                playAreaWidth * 11 -1,
+                playAreaWidth * 12 -4,
+                playAreaWidth * 12 -3,
+                playAreaWidth * 12 -2,
+                playAreaWidth * 12 -1,
+            ]
+
+            if (lastFourRows.includes(i)) continue;
+
+            if (fiveHorizontal.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+                fiveHorizontal.forEach(index => {
+                    tiles[index].style.backgroundColor = '';
+                })
+            }
+        }
+    }
+
+    function checkFiveVertical() {
+        for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth -playAreaWidth -playAreaWidth; i++) { //this loop ends four tiles north of bottom right
+            let fiveVertical = [i, i+playAreaWidth, i+playAreaWidth*2, i+playAreaWidth*3, i+playAreaWidth*4];
+            let selectedColor = tiles[i].style.backgroundColor;
+            const blankTile = tiles[i].style.backgroundColor === '';
+            if (fiveVertical.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+                fiveVertical.forEach(index => {
+                    tiles[index].style.backgroundColor = '';
+                })
+            }
+        }
+    }
+
     function checkFourHorizontal() {
         for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile two left of bottom right
             let fourHorizontal = [i, i+1, i+2 , i+3];
@@ -244,6 +324,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.setInterval(function() {
         repopulateEmptyTiles(),
+        checkFiveHorizontal(),
+        checkFiveVertical(),
         checkFourHorizontal(),
         checkFourVertical(),
         checkThreeHorizontal(),
