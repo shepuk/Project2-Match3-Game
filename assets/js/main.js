@@ -351,13 +351,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     //Menu
-    const element = document.getElementsByClassName("button");
-    element[0].addEventListener("click", myFunction);
 
-    function myFunction() {
-        $( ".game-menu" ).slideUp('slow');
+    //New game button
+    const startNewGameButton = document.getElementsByClassName("new-game-button");
+    startNewGameButton[0].addEventListener("click", startNewGame);
+
+    function startNewGame() {
+        $(".game-menu").slideUp('slow');
         score = 0;
         printScore();
+        $(".game-menu").append('<button class="resume-button">RESUME</button>');
+
+
+        //Resume button
+        
+        const resumeButton = document.getElementsByClassName("resume-button");
+        resumeButton[0].addEventListener("click", resumeGame);
+
+        function resumeGame() {
+            $(".game-menu").slideUp('slow');
+            //Add code to restart timer here
+        }
+    }
+
+    //Pause button
+    const pauseButton = document.getElementsByClassName("pause-button");
+    pauseButton[0].addEventListener("click", pauseGame);
+
+    function pauseGame() {
+        $(".game-menu").slideDown('slow');
+        //Add code to stop timer here
     }
 
 })
