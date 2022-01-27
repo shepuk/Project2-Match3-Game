@@ -11,6 +11,14 @@
     background-color: black;
 }
 
+.game-menu {
+    z-index: 2;
+    position: absolute;
+    height: 80vh;
+    width: 100%;
+    background-color: black;
+}
+
 .game-area div {
     height: 60px;
     width: 60px;
@@ -25,4 +33,15 @@ body {
 .title-text {
     color: white;
     margin-top: 5%;
+}
+
+.score-box {
+    color: white;
+}
+
+.button {
+    margin-top: 5%;
+    display: table-cell;
+    align-content: center;
+    vertical-align: middle;
 }

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const grid = document.querySelector('.game-area');
     const playAreaHeight = 9;
     const playAreaWidth = 9;
     const tiles = []; //array to hold created tile/div elements
@@ -28,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tile.setAttribute('id', i); //Give each tile an ID - may by handy to refer to this later
             tile.style.backgroundColor = tileColors[randomColor]; //Assigns a random colour from the squareColors array to the newly created div
             $('.game-area').append(tile); //jQuery adding the 'tile' to the dom
-            //grid.appendChild(tile); //adding the 'tile' to the dom
             tiles.push(tile); //adding our newly created tile to the array
         };
     }
@@ -119,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function checkFiveHorizontal() {
-        for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile two left of bottom right
+        for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile four left of bottom right
             let fiveHorizontal = [i, i+1, i+2 , i+3, i+4];
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
@@ -178,6 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (lastFourRows.includes(i)) continue;
 
             if (fiveHorizontal.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+                score += 5;
+                printScore();
                 fiveHorizontal.forEach(index => {
                     tiles[index].style.backgroundColor = '';
                 })
@@ -191,6 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
             if (fiveVertical.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+                score += 5;
+                printScore();
                 fiveVertical.forEach(index => {
                     tiles[index].style.backgroundColor = '';
                 })
@@ -199,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function checkFourHorizontal() {
-        for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile two left of bottom right
+        for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile three left of bottom right
             let fourHorizontal = [i, i+1, i+2 , i+3];
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
@@ -246,6 +248,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (lastThreeRows.includes(i)) continue;
 
             if (fourHorizontal.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+                score += 4;
+                printScore();
                 fourHorizontal.forEach(index => {
                     tiles[index].style.backgroundColor = '';
                 })
@@ -259,6 +263,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
             if (fourVertical.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+                score += 4;
+                printScore();
                 fourVertical.forEach(index => {
                     tiles[index].style.backgroundColor = '';
                 })
@@ -302,6 +308,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (lastTwoRows.includes(i)) continue;
 
             if (threeHorizontal.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+                score += 3;
+                printScore();
                 threeHorizontal.forEach(index => {
                     tiles[index].style.backgroundColor = '';
                 })
@@ -315,6 +323,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
             if (threeVertical.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+                score += 3;
+                printScore();
                 threeVertical.forEach(index => {
                     tiles[index].style.backgroundColor = '';
                 })
@@ -322,8 +332,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function printScore() {
+        $('.score').html(score);
+    }
+
     window.setInterval(function() {
-        repopulateEmptyTiles(),
+        repopulateEmptyTiles()
+    }, 150)
+
+    window.setInterval(function() {
         checkFiveHorizontal(),
         checkFiveVertical(),
         checkFourHorizontal(),
@@ -332,6 +349,17 @@ document.addEventListener('DOMContentLoaded', () => {
         checkThreeVertical()
     }, 100)
 
+
+    //Menu
+    const element = document.getElementsByClassName("button");
+    element[0].addEventListener("click", myFunction);
+
+    function myFunction() {
+        $( ".game-menu" ).slideUp('slow');
+        score = 0;
+        printScore();
+    }
+
 })
 
 
@@ -339,12 +367,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //bug resolved - in the repopoulate empty tiles function, errors were thrown when the loop was firing. Because + playareawidth on the bottom row did not exist. Fixed by ending the loop one row from bottom
 //Bug found - colour change not working when switching tiles with first tile in the array (top left)
-//bug found - sometimes not all tiles repopulate at the top row when making matches - resolved by moving the repopulate code out of the repopulateEmptyTiles first if statement and executing this function before the match detecting functions
+//bug resolved - sometimes not all tiles repopulate at the top row when making matches - resolved by moving the repopulate code out of the repopulateEmptyTiles first if statement and executing this function before the match detecting functions
 
 //CURRENT DESIRED FEATURE LIST
-//Detect valid moves (up, down, left, right)
 //Allow movement only with valid moves
-//Detect tiles of same colour as a sucessful move
 //non-sucessful moves should revert tiles back
 //spawn game board with at least a handful of moveable tiles as to not game over immidiately
 //spawn game board without any sucessful moves at the start
