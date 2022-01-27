@@ -360,6 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $(".game-menu").slideUp('slow');
         score = 0;
         printScore();
+        $(".resume-button").remove();
         $(".game-menu").append('<button class="resume-button">RESUME</button>');
 
 
