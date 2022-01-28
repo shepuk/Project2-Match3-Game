@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const tiles = []; //array to hold created tile/div elements
     let score = 0;
 
+
+    timer = setInterval(updateTimer, 1000);
+    let remainingTime = 60; // seconds
+    let timerMoving = false;
+
     const tileColors = [ //colours generated at coolors.co
         '#7B7554',
         '#17183B',
@@ -94,6 +99,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
+     * checks if timermoving variable is true, if it is, setinterval is started
+     * timermoving variable is controlled by the menu buttons
+     */
+    function updateTimer() {
+        if(!timerMoving)
+        return;
+        remainingTime = remainingTime - 1;
+        if (remainingTime >= 0)
+            $('.timer').html(remainingTime);
+        else {
+            $('.timer').html('0');
+            gameOver();
+            //Add logic to stop game
+        }
+    }
+
+    /**
      * loops through tiles on the game board, when an empty tile is found,
      * get the colour value of the above tile and replace the epmty tile with that colour
      */
@@ -102,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth; i++) {
             if (tiles[i + playAreaWidth].style.backgroundColor === '') {
                 tiles[i + playAreaWidth].style.backgroundColor = tiles[i].style.backgroundColor;
-                tiles[i].style.backgroundColor = '';  
+                tiles[i].style.backgroundColor = '';
             }
 
             const topRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -118,59 +140,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function checkFiveHorizontal() {
         for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile four left of bottom right
-            let fiveHorizontal = [i, i+1, i+2 , i+3, i+4];
+            let fiveHorizontal = [i, i + 1, i + 2, i + 3, i + 4];
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
 
             const lastFourRows = [
-                playAreaWidth -4,
-                playAreaWidth -3,
+                playAreaWidth - 4,
+                playAreaWidth - 3,
                 playAreaWidth - 2,
-                playAreaWidth -1,
-                playAreaWidth * 2 -4,
-                playAreaWidth * 2 -3,
-                playAreaWidth * 2 -2,
-                playAreaWidth * 2 -1,
-                playAreaWidth * 3 -4,
-                playAreaWidth * 3 -3,
-                playAreaWidth * 3 -2,
-                playAreaWidth * 3 -1,
-                playAreaWidth * 4 -4,
-                playAreaWidth * 4 -3,
-                playAreaWidth * 4 -2,
-                playAreaWidth * 4 -1,
-                playAreaWidth * 2 -4,
-                playAreaWidth * 5 -3,
-                playAreaWidth * 5 -2,
-                playAreaWidth * 5 -1,
-                playAreaWidth * 6 -4,
-                playAreaWidth * 6 -3,
-                playAreaWidth * 6 -2,
-                playAreaWidth * 6 -1,
-                playAreaWidth * 7 -4,
-                playAreaWidth * 7 -3,
-                playAreaWidth * 7 -2,
-                playAreaWidth * 7 -1,
-                playAreaWidth * 8 -4,
-                playAreaWidth * 8 -3,
-                playAreaWidth * 8 -2,
-                playAreaWidth * 8 -1,
-                playAreaWidth * 9 -4,
-                playAreaWidth * 9 -3,
-                playAreaWidth * 9 -2,
-                playAreaWidth * 9 -1,
-                playAreaWidth * 10 -4,
-                playAreaWidth * 10 -3,
-                playAreaWidth * 10 -2,
-                playAreaWidth * 10 -1,
-                playAreaWidth * 11 -4,
-                playAreaWidth * 11 -3,
-                playAreaWidth * 11 -2,
-                playAreaWidth * 11 -1,
-                playAreaWidth * 12 -4,
-                playAreaWidth * 12 -3,
-                playAreaWidth * 12 -2,
-                playAreaWidth * 12 -1,
+                playAreaWidth - 1,
+                playAreaWidth * 2 - 4,
+                playAreaWidth * 2 - 3,
+                playAreaWidth * 2 - 2,
+                playAreaWidth * 2 - 1,
+                playAreaWidth * 3 - 4,
+                playAreaWidth * 3 - 3,
+                playAreaWidth * 3 - 2,
+                playAreaWidth * 3 - 1,
+                playAreaWidth * 4 - 4,
+                playAreaWidth * 4 - 3,
+                playAreaWidth * 4 - 2,
+                playAreaWidth * 4 - 1,
+                playAreaWidth * 2 - 4,
+                playAreaWidth * 5 - 3,
+                playAreaWidth * 5 - 2,
+                playAreaWidth * 5 - 1,
+                playAreaWidth * 6 - 4,
+                playAreaWidth * 6 - 3,
+                playAreaWidth * 6 - 2,
+                playAreaWidth * 6 - 1,
+                playAreaWidth * 7 - 4,
+                playAreaWidth * 7 - 3,
+                playAreaWidth * 7 - 2,
+                playAreaWidth * 7 - 1,
+                playAreaWidth * 8 - 4,
+                playAreaWidth * 8 - 3,
+                playAreaWidth * 8 - 2,
+                playAreaWidth * 8 - 1,
+                playAreaWidth * 9 - 4,
+                playAreaWidth * 9 - 3,
+                playAreaWidth * 9 - 2,
+                playAreaWidth * 9 - 1,
+                playAreaWidth * 10 - 4,
+                playAreaWidth * 10 - 3,
+                playAreaWidth * 10 - 2,
+                playAreaWidth * 10 - 1,
+                playAreaWidth * 11 - 4,
+                playAreaWidth * 11 - 3,
+                playAreaWidth * 11 - 2,
+                playAreaWidth * 11 - 1,
+                playAreaWidth * 12 - 4,
+                playAreaWidth * 12 - 3,
+                playAreaWidth * 12 - 2,
+                playAreaWidth * 12 - 1,
             ]
 
             if (lastFourRows.includes(i)) continue;
@@ -186,8 +208,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function checkFiveVertical() {
-        for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth -playAreaWidth -playAreaWidth; i++) { //this loop ends four tiles north of bottom right
-            let fiveVertical = [i, i+playAreaWidth, i+playAreaWidth*2, i+playAreaWidth*3, i+playAreaWidth*4];
+        for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth; i++) { //this loop ends four tiles north of bottom right
+            let fiveVertical = [i, i + playAreaWidth, i + playAreaWidth * 2, i + playAreaWidth * 3, i + playAreaWidth * 4];
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
             if (fiveVertical.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
@@ -202,47 +224,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function checkFourHorizontal() {
         for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile three left of bottom right
-            let fourHorizontal = [i, i+1, i+2 , i+3];
+            let fourHorizontal = [i, i + 1, i + 2, i + 3];
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
 
             const lastThreeRows = [
-                playAreaWidth -3,
+                playAreaWidth - 3,
                 playAreaWidth - 2,
-                playAreaWidth -1,
-                playAreaWidth * 2 -3,
-                playAreaWidth * 2 -2,
-                playAreaWidth * 2 -1,
-                playAreaWidth * 3 -3,
-                playAreaWidth * 3 -2,
-                playAreaWidth * 3 -1,
-                playAreaWidth * 4 -3,
-                playAreaWidth * 4 -2,
-                playAreaWidth * 4 -1,
-                playAreaWidth * 5 -3,
-                playAreaWidth * 5 -2,
-                playAreaWidth * 5 -1,
-                playAreaWidth * 6 -3,
-                playAreaWidth * 6 -2,
-                playAreaWidth * 6 -1,
-                playAreaWidth * 7 -3,
-                playAreaWidth * 7 -2,
-                playAreaWidth * 7 -1,
-                playAreaWidth * 8 -3,
-                playAreaWidth * 8 -2,
-                playAreaWidth * 8 -1,
-                playAreaWidth * 9 -3,
-                playAreaWidth * 9 -2,
-                playAreaWidth * 9 -1,
-                playAreaWidth * 10 -3,
-                playAreaWidth * 10 -2,
-                playAreaWidth * 10 -1,
-                playAreaWidth * 11 -3,
-                playAreaWidth * 11 -2,
-                playAreaWidth * 11 -1,
-                playAreaWidth * 12 -3,
-                playAreaWidth * 12 -2,
-                playAreaWidth * 12 -1,
+                playAreaWidth - 1,
+                playAreaWidth * 2 - 3,
+                playAreaWidth * 2 - 2,
+                playAreaWidth * 2 - 1,
+                playAreaWidth * 3 - 3,
+                playAreaWidth * 3 - 2,
+                playAreaWidth * 3 - 1,
+                playAreaWidth * 4 - 3,
+                playAreaWidth * 4 - 2,
+                playAreaWidth * 4 - 1,
+                playAreaWidth * 5 - 3,
+                playAreaWidth * 5 - 2,
+                playAreaWidth * 5 - 1,
+                playAreaWidth * 6 - 3,
+                playAreaWidth * 6 - 2,
+                playAreaWidth * 6 - 1,
+                playAreaWidth * 7 - 3,
+                playAreaWidth * 7 - 2,
+                playAreaWidth * 7 - 1,
+                playAreaWidth * 8 - 3,
+                playAreaWidth * 8 - 2,
+                playAreaWidth * 8 - 1,
+                playAreaWidth * 9 - 3,
+                playAreaWidth * 9 - 2,
+                playAreaWidth * 9 - 1,
+                playAreaWidth * 10 - 3,
+                playAreaWidth * 10 - 2,
+                playAreaWidth * 10 - 1,
+                playAreaWidth * 11 - 3,
+                playAreaWidth * 11 - 2,
+                playAreaWidth * 11 - 1,
+                playAreaWidth * 12 - 3,
+                playAreaWidth * 12 - 2,
+                playAreaWidth * 12 - 1,
             ]
 
             if (lastThreeRows.includes(i)) continue;
@@ -258,8 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function checkFourVertical() {
-        for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth -playAreaWidth; i++) { //this loop ends at the tile three north of bottom-right
-            let fourVertical = [i, i+playAreaWidth, i+playAreaWidth*2, i+playAreaWidth*3];
+        for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth; i++) { //this loop ends at the tile three north of bottom-right
+            let fourVertical = [i, i + playAreaWidth, i + playAreaWidth * 2, i + playAreaWidth * 3];
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
             if (fourVertical.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
@@ -274,35 +296,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function checkThreeHorizontal() {
         for (i = 0; i < playAreaHeight * playAreaWidth - 2; i++) { //this loop stops at the tile two left of bottom right
-            let threeHorizontal = [i, i+1, i+2];
+            let threeHorizontal = [i, i + 1, i + 2];
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
 
             const lastTwoRows = [
                 playAreaWidth - 2,
-                playAreaWidth -1,
-                playAreaWidth * 2 -2,
-                playAreaWidth * 2 -1,
-                playAreaWidth * 3 -2,
-                playAreaWidth * 3 -1,
-                playAreaWidth * 4 -2,
-                playAreaWidth * 4 -1,
-                playAreaWidth * 5 -2,
-                playAreaWidth * 5 -1,
-                playAreaWidth * 6 -2,
-                playAreaWidth * 6 -1,
-                playAreaWidth * 7 -2,
-                playAreaWidth * 7 -1,
-                playAreaWidth * 8 -2,
-                playAreaWidth * 8 -1,
-                playAreaWidth * 9 -2,
-                playAreaWidth * 9 -1,
-                playAreaWidth * 10 -2,
-                playAreaWidth * 10 -1,
-                playAreaWidth * 11 -2,
-                playAreaWidth * 11 -1,
-                playAreaWidth * 12 -2,
-                playAreaWidth * 12 -1,
+                playAreaWidth - 1,
+                playAreaWidth * 2 - 2,
+                playAreaWidth * 2 - 1,
+                playAreaWidth * 3 - 2,
+                playAreaWidth * 3 - 1,
+                playAreaWidth * 4 - 2,
+                playAreaWidth * 4 - 1,
+                playAreaWidth * 5 - 2,
+                playAreaWidth * 5 - 1,
+                playAreaWidth * 6 - 2,
+                playAreaWidth * 6 - 1,
+                playAreaWidth * 7 - 2,
+                playAreaWidth * 7 - 1,
+                playAreaWidth * 8 - 2,
+                playAreaWidth * 8 - 1,
+                playAreaWidth * 9 - 2,
+                playAreaWidth * 9 - 1,
+                playAreaWidth * 10 - 2,
+                playAreaWidth * 10 - 1,
+                playAreaWidth * 11 - 2,
+                playAreaWidth * 11 - 1,
+                playAreaWidth * 12 - 2,
+                playAreaWidth * 12 - 1,
             ]
 
             if (lastTwoRows.includes(i)) continue;
@@ -319,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function checkThreeVertical() {
         for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth; i++) { //this loop ends at the tile two north of bottom-right
-            let threeVertical = [i, i+playAreaWidth, i+playAreaWidth*2];
+            let threeVertical = [i, i + playAreaWidth, i + playAreaWidth * 2];
             let selectedColor = tiles[i].style.backgroundColor;
             const blankTile = tiles[i].style.backgroundColor === '';
             if (threeVertical.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
@@ -336,19 +358,19 @@ document.addEventListener('DOMContentLoaded', () => {
         $('.score').html(score);
     }
 
-    window.setInterval(function() {
+    window.setInterval(function () {
         repopulateEmptyTiles()
     }, 150)
 
-    window.setInterval(function() {
+    window.setInterval(function () {
         checkFiveHorizontal(),
-        checkFiveVertical(),
-        checkFourHorizontal(),
-        checkFourVertical(),
-        checkThreeHorizontal(),
-        checkThreeVertical()
+            checkFiveVertical(),
+            checkFourHorizontal(),
+            checkFourVertical(),
+            checkThreeHorizontal(),
+            checkThreeVertical()
     }, 100)
-    
+
     //Menu
 
     //New game button
@@ -356,11 +378,14 @@ document.addEventListener('DOMContentLoaded', () => {
     startNewGameButton[0].addEventListener("click", startNewGame);
 
     function startNewGame() {
-        $(".game-menu").slideUp('slow');
+        $(".game-menu").slideUp('medium');
         score = 0;
         printScore();
         $(".resume-button").remove();
         $(".game-menu div:first-child").after('<button class="resume-button">RESUME</button>');
+        remainingTime = 61;
+        timerMoving = true;
+        updateTimer();
 
 
         //Resume button
@@ -368,7 +393,9 @@ document.addEventListener('DOMContentLoaded', () => {
         resumeButton[0].addEventListener("click", resumeGame);
 
         function resumeGame() {
-            $(".game-menu").slideUp('slow');
+            timerMoving = true;
+            updateTimer();
+            $(".game-menu").slideUp('medium');
             //Add code to restart timer here
         }
     }
@@ -378,13 +405,14 @@ document.addEventListener('DOMContentLoaded', () => {
     pauseButton[0].addEventListener("click", pauseGame);
 
     function pauseGame() {
-        $(".game-menu").slideDown('slow');
+        $(".game-menu").slideDown('medium');
+        timerMoving = false;
         //Add code to stop timer here
     }
 
     //Credits button toggle code taken from https://www.w3schools.com/jquery/eff_toggle.asp
-    $( ".credits-menu" ).hide();
-    $(".credits-button").click(function() { 
+    $(".credits-menu").hide();
+    $(".credits-button").click(function () {
         $(".credits-menu").toggle();
     });
 

@@ -14,11 +14,11 @@
 .game-menu {
     z-index: 2;
     position: absolute;
-    height: 80vh;
-    width: 80%;
+    margin: auto;
     background-color: black;
-    border-radius: 25px;
-    margin-top: 4%;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
 }
 
 .game-area div {
