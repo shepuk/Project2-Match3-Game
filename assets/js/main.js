@@ -348,8 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
         checkThreeHorizontal(),
         checkThreeVertical()
     }, 100)
-
-
+    
     //Menu
 
     //New game button
@@ -361,11 +360,10 @@ document.addEventListener('DOMContentLoaded', () => {
         score = 0;
         printScore();
         $(".resume-button").remove();
-        $(".game-menu").append('<button class="resume-button">RESUME</button>');
+        $(".game-menu div:first-child").after('<button class="resume-button">RESUME</button>');
 
 
         //Resume button
-        
         const resumeButton = document.getElementsByClassName("resume-button");
         resumeButton[0].addEventListener("click", resumeGame);
 
@@ -383,6 +381,12 @@ document.addEventListener('DOMContentLoaded', () => {
         $(".game-menu").slideDown('slow');
         //Add code to stop timer here
     }
+
+    //Credits button toggle code taken from https://www.w3schools.com/jquery/eff_toggle.asp
+    $( ".credits-menu" ).hide();
+    $(".credits-button").click(function() { 
+        $(".credits-menu").toggle();
+    });
 
 })
 

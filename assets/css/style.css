@@ -46,3 +46,8 @@ body {
     position: absolute;
     top: 5%;
 }
+
+.credits-menu {
+    color: white;
+    position: absolute;
+}
