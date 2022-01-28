@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const playAreaWidth = 9;
     const tiles = []; //array to hold created tile/div elements
     let score = 0;
+    let highScores = [];
 
 
     timer = setInterval(updateTimer, 1000);
@@ -113,6 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
             gameOver();
             //Add logic to stop game
         }
+    }
+
+    function gameOver() {
+        timerMoving = false;
+        highScores.push(score);
+        $('.resume-button').remove;
+        $(".game-menu").slideDown('medium');
+        $(".game-menu").append(`<h2>High scores: ${highScores[0]}</h2>`);
     }
 
     /**
