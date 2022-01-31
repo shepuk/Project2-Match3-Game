@@ -1,10 +1,14 @@
+.navbar {
+    min-height: 20% !important;
+}
+
 /* Want grid to be 9x9, 60px per square - 60*9=540 */
 .game-area {
     margin: auto;
-    margin-top: 5%;
     height: 540px;
     width: 540px;
-    display: flex; /* flex & flex-wrap will allow the grid divs to wrap round and start a new row */
+    display: flex;
+    /* flex & flex-wrap will allow the grid divs to wrap round and start a new row */
     flex-wrap: wrap;
     box-shadow: 0 0 0 10px white;
     border-radius: 5px;
@@ -12,13 +16,32 @@
 }
 
 .game-menu {
-    z-index: 2;
-    position: absolute;
-    margin: auto;
     background-color: black;
     border-radius: 5px;
-    height: 100%;
-    width: 100%;
+    height: 540px;
+    width: 540px;
+    border-radius: 25px;
+}
+
+.main-grid-area {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    height: 600px;
+}
+
+.container-game-menu {
+    margin: auto;
+    display: grid;
+    grid-column: 2;
+    grid-row: 1;
+    z-index: 2;
+}
+
+.container-game-area {
+    display: grid;
+    grid-column: 2;
+    grid-row: 1;
+    z-index: 1;
 }
 
 .game-area div {
@@ -28,8 +51,8 @@
 }
 
 body {
-    background: rgb(4,0,34);
-    background: linear-gradient(90deg, rgba(4,0,34,1) 0%, rgba(33,33,3,1) 45%, rgba(0,40,48,1) 100%);
+    background: rgb(4, 0, 34);
+    background: linear-gradient(90deg, rgba(4, 0, 34, 1) 0%, rgba(33, 33, 3, 1) 45%, rgba(0, 40, 48, 1) 100%);
 }
 
 .title-text {

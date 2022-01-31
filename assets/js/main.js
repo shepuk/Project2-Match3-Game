@@ -396,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
         score = 0;
         printScore();
         $(".resume-container").remove();
-        $(".game-menu > div:nth-child(1)").after('<div class="resume-container"><button class="resume-button">RESUME</button></div>');
+        $(".game-menu > div:nth-child(2)").after('<div class="resume-container"><button class="resume-button">RESUME</button></div>');
         remainingTime = 10;
         timerMoving = true;
         updateTimer();

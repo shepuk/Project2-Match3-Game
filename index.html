@@ -19,35 +19,31 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
-        <div class="col">
-            <div class="row justify-content-center">
-                <div class="game-menu">
-                    <div><button class="new-game-button">NEW GAME</button></div>
-                    <div>
-                        <h2>High scores: </h2>
-                        <p class="high-score-one"></p>
-                        <p class="high-score-two"></p>
-                        <p class="high-score-three"></p>
-                    </div>
-                    <div class="game-menu-credits">
+    <div class="main-grid-area">
+
+        <div class="container-game-menu">
+            <div class="game-menu">
+                <div>
+                    <h1>Match-3!</h1>
+                </div>
+                <div class="new-game-button-container"><button class="new-game-button">NEW GAME</button></div>
+                <div>
+                    <h2>High scores: </h2>
+                    <p class="high-score-one"></p>
+                    <p class="high-score-two"></p>
+                    <p class="high-score-three"></p>
+                </div>
+                <div class="game-menu-credits">
                     <div><button class="credits-button">CREDITS</button></div>
                     <div></div>
                 </div>
-                </div>
             </div>
         </div>
-    </div>
 
-    <div class="title-text text-center">
-        <h1>Match-3!</h1>
-    </div>
-
-    <div class="score-box text-center">
-        <h2>Score: <span class="score"></span></h2>
-    </div>
-
-    <div class="game-area">
+        <div class="container-game-area">
+            <div class="game-area">
+            </div>
+        </div>
 
     </div>
 
@@ -57,9 +53,12 @@
         <p>Click and drag to match tiles vertically or horizontally!</p>
     </div>
 
+    <div class="score-box text-center">
+        <h2>Score: <span class="score"></span></h2>
+    </div>
+
     <script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
-    <script type="text/javascript" src="assets/js/mobilecontrols.js"></script>
 
     <link rel="stylesheet" href="assets/jquery-ui/jquery-ui.min.css">
     <script src="assets/jquery-ui/external/jquery/jquery.js"></script>
