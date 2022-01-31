@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     timer = setInterval(updateTimer, 1000);
-    let remainingTime = 60; // seconds
+    let remainingTime = 10; // seconds
     let timerMoving = false;
 
     const tileColors = [ //colours generated at coolors.co
@@ -119,9 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function gameOver() {
         timerMoving = false;
         highScores.push(score);
-        $('.resume-button').remove;
+        highScores.sort(function(a, b){return b - a}); //https://www.w3schools.com/js/js_array_sort.asp
+        $('.resume-button').remove; //this doesnt work
         $(".game-menu").slideDown('medium');
-        $(".game-menu").append(`<h2>High scores: ${highScores[0]}</h2>`);
+        //$(".game-menu").append(`<h2>High scores: ${highScores[0]}</h2>`);
+        console.log(highScores);
+        $('.high-score-one').text(highScores[0]);
+        $('.high-score-two').text(highScores[1]);
+        $('.high-score-three').text(highScores[2]);
     }
 
     /**
@@ -392,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
         printScore();
         $(".resume-button").remove();
         $(".game-menu div:first-child").after('<button class="resume-button">RESUME</button>');
-        remainingTime = 61;
+        remainingTime = 10;
         timerMoving = true;
         updateTimer();
 
