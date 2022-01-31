@@ -392,10 +392,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startNewGame() {
         $(".game-menu").slideUp('medium');
+        $(".credits-menu").hide();
         score = 0;
         printScore();
-        $(".resume-button").remove();
-        $(".game-menu div:first-child").after('<div><button class="resume-button">RESUME</button></div>');
+        $(".resume-container").remove();
+        $(".game-menu > div:nth-child(1)").after('<div class="resume-container"><button class="resume-button">RESUME</button></div>');
         remainingTime = 10;
         timerMoving = true;
         updateTimer();
@@ -409,6 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
             timerMoving = true;
             updateTimer();
             $(".game-menu").slideUp('medium');
+            $(".credits-menu").hide();
             //Add code to restart timer here
         }
     }
@@ -428,16 +430,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function showCredits() {
             $('.credits-button').remove();
-            $(".game-menu > div:nth-child(2)").append('<div><button class="credits-toggler">CREDITS</button></div>');
-            $(".game-menu > div:nth-child(3)").append('<div class="credits-menu"><p>Made by Paul Shepherd</p></div>');
+            $(".game-menu-credits > div:nth-child(1)").append('<div><button class="credits-toggler">CREDITS</button></div>');
+            $(".game-menu-credits > div:nth-child(2)").append('<div class="credits-menu"><p>Made by Paul Shepherd</p></div>');
             //Credits button toggle code taken from https://www.w3schools.com/jquery/eff_toggle.asp
             $(".credits-toggler").click(function () {
                 $(".credits-menu").toggle();
             });
         }
-   
+
+
 
 })
+   
 
 
 //TODO!
@@ -445,17 +449,10 @@ document.addEventListener('DOMContentLoaded', () => {
 //bug resolved - in the repopoulate empty tiles function, errors were thrown when the loop was firing. Because + playareawidth on the bottom row did not exist. Fixed by ending the loop one row from bottom
 //Bug found - colour change not working when switching tiles with first tile in the array (top left)
 //bug resolved - sometimes not all tiles repopulate at the top row when making matches - resolved by moving the repopulate code out of the repopulateEmptyTiles first if statement and executing this function before the match detecting functions
+//bug resolved - credit menu flashed on screen as dom is loading, resolved by creating the credits menu from a button click rather than loading it in on initial load
 
 //CURRENT DESIRED FEATURE LIST
-//Allow movement only with valid moves
-//non-sucessful moves should revert tiles back
-//spawn game board with at least a handful of moveable tiles as to not game over immidiately
-//spawn game board without any sucessful moves at the start
 //animate feedback - notify players of moves and non-valid moves etc.
-//Animate tiles - both swapping tiles and hovering over tiles (possibly achieve this with jQuery)
-//menu to start game and show controls
+//Animate tiles - both swapping tiles and hovering over tiles
 //contact page using email API
-//high scores
-//incorporate timer and / or score
 //images on tiles for a better overall look
-//allow player to change game board size
