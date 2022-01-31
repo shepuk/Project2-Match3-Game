@@ -120,9 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
         timerMoving = false;
         highScores.push(score);
         highScores.sort(function(a, b){return b - a}); //https://www.w3schools.com/js/js_array_sort.asp
-        $('.resume-button').remove; //this doesnt work
+        $('.resume-button').remove();
         $(".game-menu").slideDown('medium');
-        //$(".game-menu").append(`<h2>High scores: ${highScores[0]}</h2>`);
         console.log(highScores);
         $('.high-score-one').text(highScores[0]);
         $('.high-score-two').text(highScores[1]);
@@ -396,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
         score = 0;
         printScore();
         $(".resume-button").remove();
-        $(".game-menu div:first-child").after('<button class="resume-button">RESUME</button>');
+        $(".game-menu div:first-child").after('<div><button class="resume-button">RESUME</button></div>');
         remainingTime = 10;
         timerMoving = true;
         updateTimer();
@@ -424,11 +423,19 @@ document.addEventListener('DOMContentLoaded', () => {
         //Add code to stop timer here
     }
 
-    //Credits button toggle code taken from https://www.w3schools.com/jquery/eff_toggle.asp
-    $(".credits-menu").hide();
-    $(".credits-button").click(function () {
-        $(".credits-menu").toggle();
-    });
+    const creditsButton = document.getElementsByClassName("credits-button");
+        creditsButton[0].addEventListener("click", showCredits);
+
+        function showCredits() {
+            $('.credits-button').remove();
+            $(".game-menu > div:nth-child(2)").append('<div><button class="credits-toggler">CREDITS</button></div>');
+            $(".game-menu > div:nth-child(3)").append('<div class="credits-menu"><p>Made by Paul Shepherd</p></div>');
+            //Credits button toggle code taken from https://www.w3schools.com/jquery/eff_toggle.asp
+            $(".credits-toggler").click(function () {
+                $(".credits-menu").toggle();
+            });
+        }
+   
 
 })
 
