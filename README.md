@@ -122,6 +122,8 @@ This was done via the following steps;
 
 ### Media
 [Pexels](https://www.pexels.com/) and [UnSplash](https://unsplash.com/) were used for their royalty-free imagery and videos.
+opengameart.org used for stone texture of tiles
+thenounproject used for tile iconography
 
 ### Content
 All content was written by me.

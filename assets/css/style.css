@@ -14,8 +14,8 @@
 /* Want grid to be 9x9, 60px per square - 60*9=540 */
 .game-area {
     margin: auto;
-    height: 600px;
-    width: 600px;
+    height: 700px;
+    width: 700px;
     display: flex;
     /* flex & flex-wrap will allow the grid divs to wrap round and start a new row */
     flex-wrap: wrap;
@@ -79,12 +79,15 @@
 
 .container-timer p {
     margin-top: 20px;
-
 }
 
 .container-score {
     grid-area: 2 / 3 / 3 / 4;
     z-index: 1;
+}
+
+.container-score h2 {
+    margin-top: 20px;
 }
 
 .container-pause-button {
@@ -166,8 +169,16 @@ button:hover {
     padding: 15px 25px 15px 25px;
 }
 
-.high-scores-heading {
+.high-scores-container {
+    border: 3px solid white;
+    width: 50%;
     margin-top: 100px;
+    border-radius: 25px;
+    background-color: #264653;
+}
+
+.high-scores-heading {
+    margin-top: 25px;
     font-family: quicksand, sans-serif;
     color: white;
     font-weight: 900;
@@ -176,6 +187,7 @@ button:hover {
 }
 
 .high-scores {
+    height: 70px;
     font-family: quicksand, sans-serif;
     color: white;
     font-weight: 600;
