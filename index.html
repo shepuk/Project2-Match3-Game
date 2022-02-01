@@ -19,24 +19,42 @@
         </div>
     </nav>
 
+    <div class="main-heading text-center">
+        <h1>Match 3!</h1>
+    </div>
+
     <div class="main-grid-area">
+
+        <div class="container-game-background">
+        </div>
 
         <div class="container-game-menu">
             <div class="game-menu">
-                <div>
-                    <h1>Match-3!</h1>
-                </div>
                 <div class="new-game-button-container"><button class="new-game-button">NEW GAME</button></div>
-                <div>
-                    <h2>High scores: </h2>
-                    <p class="high-score-one"></p>
-                    <p class="high-score-two"></p>
-                    <p class="high-score-three"></p>
-                </div>
+            
                 <div class="game-menu-credits">
                     <div><button class="credits-button">CREDITS</button></div>
                     <div></div>
                 </div>
+
+                <div class="container text-center">
+                    <div class="row">
+                      <div class="col">
+                        <h2 class="high-scores-heading">HIGH SCORES</h2>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col text-end">
+                        <p class="high-score-one high-scores"></p>
+                      </div>
+                      <div class="col text-center">
+                        <p class="high-score-two high-scores"></p>
+                      </div>
+                      <div class="col text-start">
+                        <p class="high-score-three high-scores"></p>
+                      </div>
+                    </div>
+                  </div>
             </div>
         </div>
 
@@ -45,17 +63,26 @@
             </div>
         </div>
 
+        <div class="container-timer text-start timer-text">
+            <p>Time: <span class='timer'>0</span></p>
+
+            </div>
+    
+            <div class="container-score score-box text-center">
+                <h2>Score: <span class="score"></span></h2>
+            </div>  
+    
+            <div class="container-pause-button text-end">
+            <button class="pause-button">PAUSE</button>
+        </div>
+
+        <div class="progress-bar"></div>
+
     </div>
 
-    <div class="title-text text-center">
-        <p>Time left: <span class='timer'>0</span> seconds!</p>
-        <button class="pause-button">PAUSE MENU</button>
-        <p>Click and drag to match tiles vertically or horizontally!</p>
-    </div>
+    
 
-    <div class="score-box text-center">
-        <h2>Score: <span class="score"></span></h2>
-    </div>
+     
 
     <script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>

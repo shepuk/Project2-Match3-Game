@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const playAreaHeight = 9;
-    const playAreaWidth = 9;
+    const playAreaHeight = 10;
+    const playAreaWidth = 10;
     const tiles = []; //array to hold created tile/div elements
     let score = 0;
     let highScores = [];
 
 
-    timer = setInterval(updateTimer, 1000);
+    let timer = setInterval(updateTimer, 1000);
     let remainingTime = 10; // seconds
     let timerMoving = false;
 
@@ -106,6 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateTimer() {
         if(!timerMoving)
         return;
+
+        $('.progress-bar').css({
+            width: remainingTime * 100 / 60 + '%'
+        });
+
         remainingTime = remainingTime - 1;
         if (remainingTime >= 0)
             $('.timer').html(remainingTime);
@@ -121,7 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
         highScores.push(score);
         highScores.sort(function(a, b){return b - a}); //https://www.w3schools.com/js/js_array_sort.asp
         $('.resume-button').remove();
-        $(".game-menu").slideDown('medium');
+        $(".game-menu").fadeIn('medium');
+        $(".game-menu").css('pointer-events', 'auto');
+        $(".container-game-menu").css('pointer-events', 'auto');
         console.log(highScores);
         $('.high-score-one').text(highScores[0]);
         $('.high-score-two').text(highScores[1]);
@@ -198,14 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 playAreaWidth * 10 - 3,
                 playAreaWidth * 10 - 2,
                 playAreaWidth * 10 - 1,
-                playAreaWidth * 11 - 4,
-                playAreaWidth * 11 - 3,
-                playAreaWidth * 11 - 2,
-                playAreaWidth * 11 - 1,
-                playAreaWidth * 12 - 4,
-                playAreaWidth * 12 - 3,
-                playAreaWidth * 12 - 2,
-                playAreaWidth * 12 - 1,
             ]
 
             if (lastFourRows.includes(i)) continue;
@@ -272,12 +271,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 playAreaWidth * 10 - 3,
                 playAreaWidth * 10 - 2,
                 playAreaWidth * 10 - 1,
-                playAreaWidth * 11 - 3,
-                playAreaWidth * 11 - 2,
-                playAreaWidth * 11 - 1,
-                playAreaWidth * 12 - 3,
-                playAreaWidth * 12 - 2,
-                playAreaWidth * 12 - 1,
             ]
 
             if (lastThreeRows.includes(i)) continue;
@@ -334,10 +327,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 playAreaWidth * 9 - 1,
                 playAreaWidth * 10 - 2,
                 playAreaWidth * 10 - 1,
-                playAreaWidth * 11 - 2,
-                playAreaWidth * 11 - 1,
-                playAreaWidth * 12 - 2,
-                playAreaWidth * 12 - 1,
             ]
 
             if (lastTwoRows.includes(i)) continue;
@@ -391,13 +380,15 @@ document.addEventListener('DOMContentLoaded', () => {
     startNewGameButton[0].addEventListener("click", startNewGame);
 
     function startNewGame() {
-        $(".game-menu").slideUp('medium');
+        $(".game-menu").fadeOut('medium');
         $(".credits-menu").hide();
+        $(".game-menu").css('pointer-events', 'none');
+        $(".container-game-menu").css('pointer-events', 'none');
         score = 0;
         printScore();
         $(".resume-container").remove();
-        $(".game-menu > div:nth-child(2)").after('<div class="resume-container"><button class="resume-button">RESUME</button></div>');
-        remainingTime = 10;
+        $(".game-menu > div:nth-child(1)").after('<div class="resume-container"><button class="resume-button">RESUME</button></div>');
+        remainingTime = 60;
         timerMoving = true;
         updateTimer();
 
@@ -409,8 +400,10 @@ document.addEventListener('DOMContentLoaded', () => {
         function resumeGame() {
             timerMoving = true;
             updateTimer();
-            $(".game-menu").slideUp('medium');
+            $(".game-menu").fadeOut('medium');
             $(".credits-menu").hide();
+            $(".game-menu").css('pointer-events', 'none');
+            $(".container-game-menu").css('pointer-events', 'none');
             //Add code to restart timer here
         }
     }
@@ -420,25 +413,26 @@ document.addEventListener('DOMContentLoaded', () => {
     pauseButton[0].addEventListener("click", pauseGame);
 
     function pauseGame() {
-        $(".game-menu").slideDown('medium');
+        $(".game-menu").fadeIn('medium');
         timerMoving = false;
+        $(".game-menu").css('pointer-events', 'auto');
+        $(".container-game-menu").css('pointer-events', 'auto');
         //Add code to stop timer here
     }
 
     const creditsButton = document.getElementsByClassName("credits-button");
-        creditsButton[0].addEventListener("click", showCredits);
+    creditsButton[0].addEventListener("click", showCredits);
 
         function showCredits() {
             $('.credits-button').remove();
             $(".game-menu-credits > div:nth-child(1)").append('<div><button class="credits-toggler">CREDITS</button></div>');
             $(".game-menu-credits > div:nth-child(2)").append('<div class="credits-menu"><p>Made by Paul Shepherd</p></div>');
+
             //Credits button toggle code taken from https://www.w3schools.com/jquery/eff_toggle.asp
             $(".credits-toggler").click(function () {
-                $(".credits-menu").toggle();
+                $(".credits-menu").slideToggle();
             });
         }
-
-
 
 })
    
