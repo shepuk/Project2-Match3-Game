@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let timerMoving = false;
 
     const tileColors = [ //colours generated at coolors.co
-        '#7B7554',
-        '#17183B',
-        '#A11692',
-        '#FF4F79',
-        '#FFB49A',
-        '#D36060'
+        'url(assets/images/tiles/blue.png)',
+        'url(assets/images/tiles/green.png)',
+        'url(assets/images/tiles/purple.png)',
+        'url(assets/images/tiles/red.png)',
+        'url(assets/images/tiles/teal.png)',
+        'url(assets/images/tiles/yellow.png)'
     ]
 
     /**
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tile.setAttribute('draggable', true); //Will allow mouse controls - Researched at https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
             let randomColor = Math.floor(Math.random() * tileColors.length); //Random number (0-1) * 5, Mathfloor rounds down to integer. Used to assign colours to tiles
             tile.setAttribute('id', i); //Give each tile an ID - may by handy to refer to this later
-            tile.style.backgroundColor = tileColors[randomColor]; //Assigns a random colour from the squareColors array to the newly created div
+            tile.style.backgroundImage = tileColors[randomColor]; //Assigns a random colour from the squareColors array to the newly created div
             $('.game-area').append(tile); //jQuery adding the 'tile' to the dom
             tiles.push(tile); //adding our newly created tile to the array
         };
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * logs the colour and id of a picked up tile
      */
     function dragStart() {
-        draggedTileColor = this.style.backgroundColor;
+        draggedTileColor = this.style.backgroundImage;
         idOfDraggedTile = parseInt(this.id);
         console.log(this.id, 'picked up');
     }
@@ -71,10 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
      * switches the colours of the dragged and replaced tiles
      */
     function onDrop() {
-        replacedTileColor = this.style.backgroundColor;
+        replacedTileColor = this.style.backgroundImage;
         idOfReplacedTile = parseInt(this.id);
-        this.style.backgroundColor = draggedTileColor;
-        tiles[idOfDraggedTile].style.backgroundColor = replacedTileColor;
+        this.style.backgroundImage = draggedTileColor;
+        tiles[idOfDraggedTile].style.backgroundImage = replacedTileColor;
         console.log(this.id, 'droped');
     }
 
@@ -92,10 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
             idOfReplacedTile = null;
             console.log('legal move');
         } else if (idOfReplacedTile && !legalMove) {
-            tiles[idOfReplacedTile].style.backgroundColor = replacedTileColor;
-            tiles[idOfDraggedTile].style.backgroundColor = draggedTileColor;
+            tiles[idOfReplacedTile].style.backgroundImage = replacedTileColor;
+            tiles[idOfDraggedTile].style.backgroundImage = draggedTileColor;
             console.log('not a legal move');
-        } else tiles[idOfDraggedTile].style.backgroundColor = draggedTileColor, console.log('not a legal move');
+        } else tiles[idOfDraggedTile].style.backgroundImage = draggedTileColor, console.log('not a legal move');
 
     }
 
@@ -142,18 +142,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function repopulateEmptyTiles() {
         //Move tiles down
         for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth; i++) {
-            if (tiles[i + playAreaWidth].style.backgroundColor === '') {
-                tiles[i + playAreaWidth].style.backgroundColor = tiles[i].style.backgroundColor;
-                tiles[i].style.backgroundColor = '';
+            if (tiles[i + playAreaWidth].style.backgroundImage === '') {
+                tiles[i + playAreaWidth].style.backgroundImage = tiles[i].style.backgroundImage;
+                tiles[i].style.backgroundImage = '';
             }
 
             const topRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
             const isTopRow = topRow.includes(i);
 
             //Repopulate empty tiles with random colours
-            if (isTopRow && tiles[i].style.backgroundColor === '') {
+            if (isTopRow && tiles[i].style.backgroundImage === '') {
                 let randomColor = Math.floor(Math.random() * tileColors.length);
-                tiles[i].style.backgroundColor = tileColors[randomColor];
+                tiles[i].style.backgroundImage = tileColors[randomColor];
             }
         }
     }
@@ -161,8 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkFiveHorizontal() {
         for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile four left of bottom right
             let fiveHorizontal = [i, i + 1, i + 2, i + 3, i + 4];
-            let selectedColor = tiles[i].style.backgroundColor;
-            const blankTile = tiles[i].style.backgroundColor === '';
+            let selectedColor = tiles[i].style.backgroundImage;
+            const blankTile = tiles[i].style.backgroundImage === '';
 
             const lastFourRows = [
                 playAreaWidth - 4,
@@ -209,11 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (lastFourRows.includes(i)) continue;
 
-            if (fiveHorizontal.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+            if (fiveHorizontal.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
                 score += 5;
                 printScore();
                 fiveHorizontal.forEach(index => {
-                    tiles[index].style.backgroundColor = '';
+                    tiles[index].style.backgroundImage = '';
                 })
             }
         }
@@ -222,13 +222,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkFiveVertical() {
         for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth; i++) { //this loop ends four tiles north of bottom right
             let fiveVertical = [i, i + playAreaWidth, i + playAreaWidth * 2, i + playAreaWidth * 3, i + playAreaWidth * 4];
-            let selectedColor = tiles[i].style.backgroundColor;
-            const blankTile = tiles[i].style.backgroundColor === '';
-            if (fiveVertical.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+            let selectedColor = tiles[i].style.backgroundImage;
+            const blankTile = tiles[i].style.backgroundImage === '';
+            if (fiveVertical.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
                 score += 5;
                 printScore();
                 fiveVertical.forEach(index => {
-                    tiles[index].style.backgroundColor = '';
+                    tiles[index].style.backgroundImage = '';
                 })
             }
         }
@@ -237,8 +237,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkFourHorizontal() {
         for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile three left of bottom right
             let fourHorizontal = [i, i + 1, i + 2, i + 3];
-            let selectedColor = tiles[i].style.backgroundColor;
-            const blankTile = tiles[i].style.backgroundColor === '';
+            let selectedColor = tiles[i].style.backgroundImage;
+            const blankTile = tiles[i].style.backgroundImage === '';
 
             const lastThreeRows = [
                 playAreaWidth - 3,
@@ -275,11 +275,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (lastThreeRows.includes(i)) continue;
 
-            if (fourHorizontal.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+            if (fourHorizontal.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
                 score += 4;
                 printScore();
                 fourHorizontal.forEach(index => {
-                    tiles[index].style.backgroundColor = '';
+                    tiles[index].style.backgroundImage = '';
                 })
             }
         }
@@ -288,13 +288,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkFourVertical() {
         for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth; i++) { //this loop ends at the tile three north of bottom-right
             let fourVertical = [i, i + playAreaWidth, i + playAreaWidth * 2, i + playAreaWidth * 3];
-            let selectedColor = tiles[i].style.backgroundColor;
-            const blankTile = tiles[i].style.backgroundColor === '';
-            if (fourVertical.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+            let selectedColor = tiles[i].style.backgroundImage;
+            const blankTile = tiles[i].style.backgroundImage === '';
+            if (fourVertical.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
                 score += 4;
                 printScore();
                 fourVertical.forEach(index => {
-                    tiles[index].style.backgroundColor = '';
+                    tiles[index].style.backgroundImage = '';
                 })
             }
         }
@@ -303,8 +303,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkThreeHorizontal() {
         for (i = 0; i < playAreaHeight * playAreaWidth - 2; i++) { //this loop stops at the tile two left of bottom right
             let threeHorizontal = [i, i + 1, i + 2];
-            let selectedColor = tiles[i].style.backgroundColor;
-            const blankTile = tiles[i].style.backgroundColor === '';
+            let selectedColor = tiles[i].style.backgroundImage;
+            const blankTile = tiles[i].style.backgroundImage === '';
 
             const lastTwoRows = [
                 playAreaWidth - 2,
@@ -331,11 +331,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (lastTwoRows.includes(i)) continue;
 
-            if (threeHorizontal.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+            if (threeHorizontal.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
                 score += 3;
                 printScore();
                 threeHorizontal.forEach(index => {
-                    tiles[index].style.backgroundColor = '';
+                    tiles[index].style.backgroundImage = '';
                 })
             }
         }
@@ -344,13 +344,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkThreeVertical() {
         for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth; i++) { //this loop ends at the tile two north of bottom-right
             let threeVertical = [i, i + playAreaWidth, i + playAreaWidth * 2];
-            let selectedColor = tiles[i].style.backgroundColor;
-            const blankTile = tiles[i].style.backgroundColor === '';
-            if (threeVertical.every(index => tiles[index].style.backgroundColor === selectedColor && !blankTile)) {
+            let selectedColor = tiles[i].style.backgroundImage;
+            const blankTile = tiles[i].style.backgroundImage === '';
+            if (threeVertical.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
                 score += 3;
                 printScore();
                 threeVertical.forEach(index => {
-                    tiles[index].style.backgroundColor = '';
+                    tiles[index].style.backgroundImage = '';
                 })
             }
         }
@@ -426,11 +426,11 @@ document.addEventListener('DOMContentLoaded', () => {
         function showCredits() {
             $('.credits-button').remove();
             $(".game-menu-credits > div:nth-child(1)").append('<div><button class="credits-toggler">CREDITS</button></div>');
-            $(".game-menu-credits > div:nth-child(2)").append('<div class="credits-menu"><p>Made by Paul Shepherd</p></div>');
+            $(".game-menu-credits > div:nth-child(2)").append('<div class="credits-menu"><p>A Match-3 style game made by Paul Shepherd</p></div>');
 
             //Credits button toggle code taken from https://www.w3schools.com/jquery/eff_toggle.asp
             $(".credits-toggler").click(function () {
-                $(".credits-menu").slideToggle();
+                $(".credits-menu").toggle();
             });
         }
 
