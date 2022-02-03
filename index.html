@@ -2,95 +2,115 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/2aeb1cf864.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Match 3!</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/2aeb1cf864.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Match 3!</title>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1"> </span>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"><i class="fas fa-star"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Play</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">How To Play</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <div class="main-heading text-center">
-        <h1><i class="fas fa-star"></i>Element-Match<i class="fas fa-star"></i></h1>
+  <div class="main-heading text-center">
+    <h1><i class="fas fa-star"></i>Element-Match<i class="fas fa-star"></i></h1>
+  </div>
+
+  <div class="main-grid-area">
+
+    <div class="container-game-background">
     </div>
 
-    <div class="main-grid-area">
+    <div class="container-game-menu">
+      <div class="game-menu">
+        <div class="new-game-button-container"><button class="new-game-button">NEW GAME</button></div>
 
-        <div class="container-game-background">
+        <div class="game-menu-credits">
+          <div><button class="credits-button">CREDITS</button></div>
+          <div></div>
         </div>
 
-        <div class="container-game-menu">
-            <div class="game-menu">
-                <div class="new-game-button-container"><button class="new-game-button">NEW GAME</button></div>
-            
-                <div class="game-menu-credits">
-                    <div><button class="credits-button">CREDITS</button></div>
-                    <div></div>
-                </div>
-
-                <div class="container text-center high-scores-container">
-                    <div class="row">
-                      <div class="col">
-                        <h2 class="high-scores-heading">HIGH SCORES</h2>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col text-center">
-                        <p class="high-score-one high-scores">0</p>
-                      </div>
-                      <div class="col text-center">
-                        <p class="high-score-two high-scores">0</p>
-                      </div>
-                      <div class="col text-center">
-                        <p class="high-score-three high-scores">0</p>
-                      </div>
-                    </div>
-                  </div>
+        <div class="container text-center high-scores-container">
+          <div class="row">
+            <div class="col">
+              <h2 class="high-scores-heading">HIGH SCORES</h2>
             </div>
-        </div>
-
-        <div class="container-game-area">
-            <div class="game-area">
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <p class="high-score-one high-scores">0</p>
             </div>
-        </div>
-
-        <div class="container-timer text-start timer-text">
-            <p>Time: <span class='timer'>0</span></p>
-
+            <div class="col text-center">
+              <p class="high-score-two high-scores">0</p>
             </div>
-    
-            <div class="container-score score-box text-center">
-                <h2>Score: <span class="score"></span></h2>
-            </div>  
-    
-            <div class="container-pause-button text-end">
-            <button class="pause-button">PAUSE</button>
+            <div class="col text-center">
+              <p class="high-score-three high-scores">0</p>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div class="progress-bar"></div>
+    <div class="container-game-area">
+      <div class="game-area">
+      </div>
+    </div>
+
+    <div class="container-timer text-start timer-text">
+      <p>Time: <span class='timer'>0</span></p>
 
     </div>
 
-    
+    <div class="container-score score-box text-center">
+      <h2>Score: <span class="score"></span></h2>
+    </div>
 
-     
+    <div class="container-pause-button text-end">
+      <button class="pause-button">PAUSE</button>
+    </div>
 
-    <script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="assets/js/main.js"></script>
+    <div class="progress-bar"></div>
 
-    <link rel="stylesheet" href="assets/jquery-ui/jquery-ui.min.css">
-    <script src="assets/jquery-ui/external/jquery/jquery.js"></script>
-    <script src="assets/jquery-ui/jquery-ui.min.js"></script>
+  </div>
+
+
+
+
+
+  <script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="assets/js/main.js"></script>
+
+  <link rel="stylesheet" href="assets/jquery-ui/jquery-ui.min.css">
+  <script src="assets/jquery-ui/external/jquery/jquery.js"></script>
+  <script src="assets/jquery-ui/jquery-ui.min.js"></script>
 </body>
 
 </html>

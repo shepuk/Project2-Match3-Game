@@ -1,6 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&family=Press+Start+2P&family=Rakkas&display=swap');
 
+.navbar {
+    background-color: #1d1d1d !important;
+    box-shadow: 3px 0px 10px rgb(0, 0, 0);;
+}
+
+.navbar-brand {
+    font-family: Rakkas, sans-serif;
+    font-size: 30px !important;
+    color: white;
+    text-transform: uppercase !important;
+}
+
+.navbar-nav {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+}
+
 .main-heading {
+    margin-top: 25px;
     font-family: Rakkas, sans-serif;
     font-size: 80px;
     text-transform: uppercase;
@@ -27,7 +49,6 @@
 .game-area div {
     height: 10%;
     width: 10%;
-    box-shadow: 3px 0px 10px rgb(0, 0, 0);
 }
 
 .game-menu {
@@ -83,8 +104,13 @@
 }
 
 .container-timer p {
+    font-family: "Fira Sans", sans-serif;
     margin-top: 20px;
     margin-left: 40px;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .container-score {
@@ -93,7 +119,12 @@
 }
 
 .container-score h2 {
+    font-family: "Fira Sans", sans-serif;
     margin-top: 20px;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .container-pause-button {
@@ -103,7 +134,8 @@
 
 body {
     height: 100%;
-    background: #272525;
+    background: rgb(101,101,101);
+    background: radial-gradient(circle, rgba(69,69,69,1) 0%, rgba(33,33,33,1) 100%); /* https://cssgradient.io/ */
 }
 
 .score-box {
@@ -129,7 +161,7 @@ button {
     box-shadow: inset 0 0 0 0 #168aad;
     -webkit-transition: ease-out 0.4s;
     -moz-transition: ease-out 0.4s;
-    transition: ease-out 0.3s;
+    transition: ease-out 0.2s;
 
     font-family: "Fira Sans", sans-serif;
     color: white;
