@@ -9,6 +9,12 @@ let remainingTime = 10; // seconds
 let timerMoving = false;
 let gameMode = 60;
 
+let soundActive = false;
+let matchSound;
+let uiSound;
+matchSound = new Audio("assets/sounds/match.wav");
+uiSound = new Audio("assets/sounds/ui.ogg");
+
 const tileColors = [ //colours generated at coolors.co
     'url(assets/images/tiles/blue.png)',
     'url(assets/images/tiles/green.png)',
@@ -19,7 +25,7 @@ const tileColors = [ //colours generated at coolors.co
 ]
 
 /**
- * Creates a 9x9 set of divs (game tiles), assigns each a random colour, 
+ * Creates a 10x10 set of divs (game tiles), assigns each a random colour, 
  * a uniqie ID and appends as a child to the main game area div
  */
 function createBoard() {
@@ -61,7 +67,6 @@ $('.tile').on('dragover', function (event) {
 function dragStart() {
     draggedTileColor = this.style.backgroundImage;
     idOfDraggedTile = parseInt(this.id);
-    console.log(this.id, 'picked up');
 }
 
 /**
@@ -73,7 +78,6 @@ function onDrop() {
     idOfReplacedTile = parseInt(this.id);
     this.style.backgroundImage = draggedTileColor;
     tiles[idOfDraggedTile].style.backgroundImage = replacedTileColor;
-    console.log(this.id, 'droped');
 }
 
 function dragEnd() {
@@ -88,12 +92,10 @@ function dragEnd() {
 
     if (idOfReplacedTile && legalMove) {
         idOfReplacedTile = null;
-        console.log('legal move');
     } else if (idOfReplacedTile && !legalMove) {
         tiles[idOfReplacedTile].style.backgroundImage = replacedTileColor;
         tiles[idOfDraggedTile].style.backgroundImage = draggedTileColor;
-        console.log('not a legal move');
-    } else tiles[idOfDraggedTile].style.backgroundImage = draggedTileColor, console.log('not a legal move');
+    } else tiles[idOfDraggedTile].style.backgroundImage = draggedTileColor;
 
 }
 
@@ -129,7 +131,6 @@ function gameOver() {
     $(".game-menu").fadeIn('medium');
     $(".game-menu").css('pointer-events', 'auto');
     $(".container-game-menu").css('pointer-events', 'auto');
-    console.log(highScores);
     $('.high-score-one').text(highScores[0]);
     $('.high-score-two').text(highScores[1]);
     $('.high-score-three').text(highScores[2]);
@@ -212,6 +213,9 @@ function checkFiveHorizontal() {
         if (fiveHorizontal.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
             score += 5;
             printScore();
+            if (soundActive) {
+                matchSound.play();
+            }
             fiveHorizontal.forEach(index => {
                 tiles[index].style.backgroundImage = '';
             })
@@ -227,6 +231,9 @@ function checkFiveVertical() {
         if (fiveVertical.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
             score += 5;
             printScore();
+            if (soundActive) {
+                matchSound.play();
+            }
             fiveVertical.forEach(index => {
                 tiles[index].style.backgroundImage = '';
             })
@@ -278,6 +285,9 @@ function checkFourHorizontal() {
         if (fourHorizontal.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
             score += 4;
             printScore();
+            if (soundActive) {
+                matchSound.play();
+            }
             fourHorizontal.forEach(index => {
                 tiles[index].style.backgroundImage = '';
             })
@@ -293,6 +303,9 @@ function checkFourVertical() {
         if (fourVertical.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
             score += 4;
             printScore();
+            if (soundActive) {
+                matchSound.play();
+            }
             fourVertical.forEach(index => {
                 tiles[index].style.backgroundImage = '';
             })
@@ -334,6 +347,9 @@ function checkThreeHorizontal() {
         if (threeHorizontal.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
             score += 3;
             printScore();
+            if (soundActive) {
+                matchSound.play();
+            }
             threeHorizontal.forEach(index => {
                 tiles[index].style.backgroundImage = '';
             })
@@ -349,6 +365,9 @@ function checkThreeVertical() {
         if (threeVertical.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
             score += 3;
             printScore();
+            if (soundActive) {
+                matchSound.play();
+            }
             threeVertical.forEach(index => {
                 tiles[index].style.backgroundImage = '';
             })
@@ -366,11 +385,11 @@ window.setInterval(function () {
 
 window.setInterval(function () {
     checkFiveHorizontal(),
-        checkFiveVertical(),
-        checkFourHorizontal(),
-        checkFourVertical(),
-        checkThreeHorizontal(),
-        checkThreeVertical()
+    checkFiveVertical(),
+    checkFourHorizontal(),
+    checkFourVertical(),
+    checkThreeHorizontal(),
+    checkThreeVertical()
 }, 100)
 
 //Menu
@@ -391,6 +410,9 @@ function startNewGame() {
     remainingTime = gameMode;
     timerMoving = true;
     updateTimer();
+    if (soundActive) {
+        uiSound.play();
+    }
 
 
     //Resume button
@@ -404,11 +426,13 @@ function startNewGame() {
         $(".credits-menu").hide();
         $(".game-menu").css('pointer-events', 'none');
         $(".container-game-menu").css('pointer-events', 'none');
-        //Add code to restart timer here
+        if (soundActive) {
+            uiSound.play();
+        }
     }
 }
 
-//Game length selector button
+//Game length selector buttons
 const sixtyButton = document.getElementsByClassName("mode60-button");
 sixtyButton[0].addEventListener("click", gameTimeSixty);
 
@@ -416,6 +440,9 @@ function gameTimeSixty() {
     gameMode = 60;
     $(".mode60-button").css('background-color', '#168aad');
     $(".mode30-button").css('background-color', '#21373f');
+    if (soundActive) {
+        uiSound.play();
+    }
 }
 
 const thirtyButton = document.getElementsByClassName("mode30-button");
@@ -425,6 +452,9 @@ function gameTimeThirty() {
     gameMode = 30;
     $(".mode60-button").css('background-color', '#21373f');
     $(".mode30-button").css('background-color', '#168aad');
+    if (soundActive) {
+        uiSound.play();
+    }
 }
 
 //Pause button
@@ -436,9 +466,12 @@ function pauseGame() {
     timerMoving = false;
     $(".game-menu").css('pointer-events', 'auto');
     $(".container-game-menu").css('pointer-events', 'auto');
-    //Add code to stop timer here
+    if (soundActive) {
+        uiSound.play();
+    }
 }
 
+//Credits button & toggler
 const creditsButton = document.getElementsByClassName("credits-button");
 creditsButton[0].addEventListener("click", showCredits);
 
@@ -450,20 +483,48 @@ function showCredits() {
     //Credits button toggle code taken from https://www.w3schools.com/jquery/eff_toggle.asp
     $(".credits-toggler").click(function () {
         $(".credits-menu").toggle();
+        if (soundActive) {
+            uiSound.play();
+        }
     });
 }
 
+//Audio button & toggler
+const soundButton = document.getElementsByClassName("sound-toggle-button");
+soundButton[0].addEventListener("click", toggleSound);
+
+function toggleSound() {
+    if (!soundActive) {
+        soundActive = true;
+        $(".sound-toggle-button").text("");
+        $('.sound-toggle-button').append('<i class="fas fa-volume-up"></i>')
+        if (soundActive) {
+            uiSound.play();
+        }
+        return;
+    }
+    if (soundActive) {
+        soundActive = false;
+        $(".sound-toggle-button").text("");
+        $('.sound-toggle-button').append('<i class="fas fa-volume-mute"></i>')
+        if (soundActive) {
+            uiSound.play();
+        }
+    }
+}
 
 
-//TODO!
 
 //bug resolved - in the repopoulate empty tiles function, errors were thrown when the loop was firing. Because + playareawidth on the bottom row did not exist. Fixed by ending the loop one row from bottom
 //Bug found - colour change not working when switching tiles with first tile in the array (top left)
 //bug resolved - sometimes not all tiles repopulate at the top row when making matches - resolved by moving the repopulate code out of the repopulateEmptyTiles first if statement and executing this function before the match detecting functions
 //bug resolved - credit menu flashed on screen as dom is loading, resolved by creating the credits menu from a button click rather than loading it in on initial load
 
+
+//TODO!
+
 //CURRENT DESIRED FEATURE LIST
+//stop board creating before player clicks new game
 //animate feedback - notify players of moves and non-valid moves etc.
 //Animate tiles - both swapping tiles and hovering over tiles
 //contact page using email API
-//images on tiles for a better overall look

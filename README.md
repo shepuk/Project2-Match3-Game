@@ -124,6 +124,7 @@ This was done via the following steps;
 [Pexels](https://www.pexels.com/) and [UnSplash](https://unsplash.com/) were used for their royalty-free imagery and videos.
 opengameart.org used for stone texture of tiles
 thenounproject used for tile iconography
+kenney.nl and opengameart.org used for sounds
 
 ### Content
 All content was written by me.
