@@ -29,7 +29,7 @@ const tileColors = [ //colours generated at coolors.co
  * a uniqie ID and appends as a child to the main game area div
  */
 function createBoard() {
-    for (let i = 0; i < playAreaHeight * playAreaWidth; i++) { //Looping through our 9x9 game board
+    for (let i = 0; i < playAreaHeight * playAreaWidth; i++) { //Looping through our 10x10 game board
         const tile = document.createElement(`div`); //Creating a game board tile, already sized in CSS - should make things easily scalable
         tile.classList.add('tile');
         tile.setAttribute('draggable', true); //Will allow mouse controls - Researched at https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
@@ -67,6 +67,7 @@ $('.tile').on('dragover', function (event) {
 function dragStart() {
     draggedTileColor = this.style.backgroundImage;
     idOfDraggedTile = parseInt(this.id);
+    console.log(idOfDraggedTile);
 }
 
 /**
@@ -74,8 +75,8 @@ function dragStart() {
  * switches the colours of the dragged and replaced tiles
  */
 function onDrop() {
-    replacedTileColor = this.style.backgroundImage;
     idOfReplacedTile = parseInt(this.id);
+    replacedTileColor = this.style.backgroundImage;
     this.style.backgroundImage = draggedTileColor;
     tiles[idOfDraggedTile].style.backgroundImage = replacedTileColor;
 }
@@ -90,13 +91,17 @@ function dragEnd() {
 
     let legalMove = adjacentTiles.includes(idOfReplacedTile); //if the id number of a replaced tile is included in the adjacenttiles array, then legalMove is truthy
 
-    if (idOfReplacedTile && legalMove) {
+    if ((idOfReplacedTile >= 0 && idOfReplacedTile <= 99) && legalMove) { //fix found  at https://stackoverflow.com/questions/14718561/how-to-check-if-a-number-is-between-two-values/14718577
         idOfReplacedTile = null;
+        console.log('legal')
     } else if (idOfReplacedTile && !legalMove) {
         tiles[idOfReplacedTile].style.backgroundImage = replacedTileColor;
         tiles[idOfDraggedTile].style.backgroundImage = draggedTileColor;
-    } else tiles[idOfDraggedTile].style.backgroundImage = draggedTileColor;
-
+        console.log('not legal')
+    } else {
+        tiles[idOfDraggedTile].style.backgroundImage = draggedTileColor;
+        tiles[idOfReplacedTile].style.backgroundImage = replacedTileColor;
+    }
 }
 
 /**
@@ -148,7 +153,7 @@ function repopulateEmptyTiles() {
             tiles[i].style.backgroundImage = '';
         }
 
-        const topRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        const topRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         const isTopRow = topRow.includes(i);
 
         //Repopulate empty tiles with random colours
@@ -385,11 +390,11 @@ window.setInterval(function () {
 
 window.setInterval(function () {
     checkFiveHorizontal(),
-    checkFiveVertical(),
-    checkFourHorizontal(),
-    checkFourVertical(),
-    checkThreeHorizontal(),
-    checkThreeVertical()
+        checkFiveVertical(),
+        checkFourHorizontal(),
+        checkFourVertical(),
+        checkThreeHorizontal(),
+        checkThreeVertical()
 }, 100)
 
 //Menu
@@ -476,6 +481,9 @@ const creditsButton = document.getElementsByClassName("credits-button");
 creditsButton[0].addEventListener("click", showCredits);
 
 function showCredits() {
+    if (soundActive) {
+            uiSound.play();
+    }
     $('.credits-button').remove();
     $(".game-menu-credits > div:nth-child(1)").append('<div><button class="credits-toggler">CREDITS</button></div>');
     $(".game-menu-credits > div:nth-child(2)").append('<div class="credits-menu"><p>A Match-3 style game made by Paul Shepherd</p></div>');
@@ -516,7 +524,7 @@ function toggleSound() {
 
 
 //bug resolved - in the repopoulate empty tiles function, errors were thrown when the loop was firing. Because + playareawidth on the bottom row did not exist. Fixed by ending the loop one row from bottom
-//Bug found - colour change not working when switching tiles with first tile in the array (top left)
+//Bug found - colour change not working when switching tiles with first tile in the array (top left) - RESOLVED rather than checking for wheather the id of a tile is truthy, I specified the range (<= 0, >+ 99) as 0 returns as NaN when using parseInt
 //bug resolved - sometimes not all tiles repopulate at the top row when making matches - resolved by moving the repopulate code out of the repopulateEmptyTiles first if statement and executing this function before the match detecting functions
 //bug resolved - credit menu flashed on screen as dom is loading, resolved by creating the credits menu from a button click rather than loading it in on initial load
 
