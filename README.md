@@ -125,6 +125,7 @@ This was done via the following steps;
 opengameart.org used for stone texture of tiles
 thenounproject used for tile iconography
 kenney.nl and opengameart.org used for sounds
+tiles from https://www.kenney.nl/assets/sokoban
 
 ### Content
 All content was written by me.

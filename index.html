@@ -14,28 +14,54 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Element-Match</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Play</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Help</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Contact</a>
-          </li>
-        </ul>
-      </div>
+      <a class="navbar-brand" href="#">
+        <img src="/assets/images/tiles/red.png" alt="a red cartoon-style crate" width="30" height="30"
+          class="d-inline-block align-text-top">
+        Crate Match
+      </a>
     </div>
   </nav>
-  
+  <div class="nav-curve"></div>
+
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div class="col-lg-2 col-md-12 text-start">
+        <div class="new-game-button-container">
+          <button class="new-game-button">NEW GAME</button>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-6 resume-button-container">
+
+      </div>
+
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="game-menu-mode">
+          <div><button id="game-mode-button">GAME MODE:</button></div>
+          <div><button class="mode60-button">60</button></div>
+          <div><button class="mode30-button">30</button></div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="game-menu-credits">
+          <div><button class="credits-button">CREDITS</button></div>
+          <div></div>
+        </div>
+      </div>
+
+      <div class="col-lg-1 col-md-6 text-end">
+        <div class="sound-toggler">
+          <button class="sound-toggle-button"><i class="fas fa-volume-mute"></i></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <div class="main-grid-area">
 
     <div class="container-game-background">
@@ -43,25 +69,19 @@
 
     <div class="container-game-menu">
       <div class="game-menu">
-        <div class="new-game-button-container">
-          <button class="new-game-button">NEW GAME</button>
-        </div>
 
-        <div class="game-menu-mode">
-          <div><button id="game-mode-button">GAME MODE:</button></div>
-          <div><button class="mode60-button">60</button></div>
-          <div><button class="mode30-button">30</button></div>
-        </div>
-
-        <div class="game-menu-credits">
-          <div><button class="credits-button">CREDITS</button></div>
-          <div></div>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col">
+              <h1>CRATE MATCH</h1>
+            </div>
+          </div>
         </div>
 
         <div class="container text-center high-scores-container">
           <div class="row">
             <div class="col">
-              <h2 class="high-scores-heading">HIGH SCORES</h2>
+              <h2 class="high-scores-heading">High Scores</h2>
             </div>
           </div>
           <div class="row">
@@ -77,9 +97,6 @@
           </div>
         </div>
 
-        <div class="sound-toggler">
-          <button class="sound-toggle-button"><i class="fas fa-volume-mute"></i></button>
-        </div>
       </div>
     </div>
 
@@ -94,7 +111,7 @@
     </div>
 
     <div class="container-score score-box text-center">
-      <h2>Score: <span class="score"></span></h2>
+      <p>Score: <span class="score"></span></p>
     </div>
 
     <div class="container-pause-button text-end">

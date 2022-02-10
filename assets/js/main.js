@@ -18,9 +18,9 @@ uiSound = new Audio("assets/sounds/ui.ogg");
 const tileColors = [
     'url(assets/images/tiles/blue.png)',
     'url(assets/images/tiles/green.png)',
-    'url(assets/images/tiles/purple.png)',
+    'url(assets/images/tiles/silver.png)',
     'url(assets/images/tiles/red.png)',
-    'url(assets/images/tiles/teal.png)',
+    'url(assets/images/tiles/brown.png)',
     'url(assets/images/tiles/yellow.png)'
 ]
 
@@ -111,11 +111,9 @@ function dragEnd() {
     //Below solution found  at https://stackoverflow.com/questions/14718561/how-to-check-if-a-number-is-between-two-values/14718577
     if ((idOfReplacedTile >= 0 && idOfReplacedTile <= 99) && legalMove) {
         idOfReplacedTile = null;
-        console.log('legal')
     } else if (idOfReplacedTile && !legalMove) {
         tiles[idOfReplacedTile].style.backgroundImage = replacedTileColor;
         tiles[idOfDraggedTile].style.backgroundImage = draggedTileColor;
-        console.log('not legal')
     } else {
         tiles[idOfDraggedTile].style.backgroundImage = draggedTileColor;
         tiles[idOfReplacedTile].style.backgroundImage = replacedTileColor;
@@ -449,7 +447,7 @@ function startNewGame() {
     score = 0;
     printScore();
     $(".resume-container").remove();
-    $(".game-menu > div:nth-child(1)").after('<div class="resume-container"><button class="resume-button">RESUME</button></div>');
+    $(".resume-button-container").append('<div class="resume-container"><button class="resume-button">RESUME</button></div>');
     remainingTime = gameMode;
     timerMoving = true;
     updateTimer();
@@ -481,7 +479,7 @@ sixtyButton[0].addEventListener("click", gameTimeSixty);
 
 function gameTimeSixty() {
     gameMode = 60;
-    $(".mode60-button").css('background-color', '#168aad');
+    $(".mode60-button").css('background-color', '#405cf5');
     $(".mode30-button").css('background-color', '#21373f');
     if (soundActive) {
         uiSound.play();
@@ -494,7 +492,7 @@ thirtyButton[0].addEventListener("click", gameTimeThirty);
 function gameTimeThirty() {
     gameMode = 30;
     $(".mode60-button").css('background-color', '#21373f');
-    $(".mode30-button").css('background-color', '#168aad');
+    $(".mode30-button").css('background-color', '#405cf5');
     if (soundActive) {
         uiSound.play();
     }
