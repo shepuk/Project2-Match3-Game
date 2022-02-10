@@ -1,6 +1,6 @@
 const playAreaHeight = 10;
 const playAreaWidth = 10;
-const tiles = []; //array to hold created tile/div elements
+const tiles = [];
 let score = 0;
 let highScores = [];
 
@@ -15,7 +15,7 @@ let uiSound;
 matchSound = new Audio("assets/sounds/match.wav");
 uiSound = new Audio("assets/sounds/ui.ogg");
 
-const tileColors = [ //colours generated at coolors.co
+const tileColors = [
     'url(assets/images/tiles/blue.png)',
     'url(assets/images/tiles/green.png)',
     'url(assets/images/tiles/purple.png)',
@@ -24,20 +24,33 @@ const tileColors = [ //colours generated at coolors.co
     'url(assets/images/tiles/yellow.png)'
 ]
 
-/**
- * Creates a 10x10 set of divs (game tiles), assigns each a random colour, 
- * a uniqie ID and appends as a child to the main game area div
+window.setInterval(function () {
+    repopulateEmptyTiles()
+}, 150)
+
+window.setInterval(function () {
+    checkFiveHorizontal(),
+    checkFiveVertical(),
+    checkFourHorizontal(),
+    checkFourVertical(),
+    checkThreeHorizontal(),
+    checkThreeVertical()
+}, 100)
+
+/*
+ * Creates a 10x10 set of tiles (divs), assigns each an ID and random colour,
+ * adds tiles to DOM and tiles array
  */
 function createBoard() {
-    for (let i = 0; i < playAreaHeight * playAreaWidth; i++) { //Looping through our 10x10 game board
-        const tile = document.createElement(`div`); //Creating a game board tile, already sized in CSS - should make things easily scalable
+    for (let i = 0; i < playAreaHeight * playAreaWidth; i++) {
+        const tile = document.createElement(`div`);
         tile.classList.add('tile');
-        tile.setAttribute('draggable', true); //Will allow mouse controls - Researched at https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
-        let randomColor = Math.floor(Math.random() * tileColors.length); //Random number (0-1) * 5, Mathfloor rounds down to integer. Used to assign colours to tiles
-        tile.setAttribute('id', i); //Give each tile an ID - may by handy to refer to this later
-        tile.style.backgroundImage = tileColors[randomColor]; //Assigns a random colour from the squareColors array to the newly created div
-        $('.game-area').append(tile); //jQuery adding the 'tile' to the dom
-        tiles.push(tile); //adding our newly created tile to the array
+        tile.setAttribute('draggable', true); //Draggable researched at https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
+        let randomColor = Math.floor(Math.random() * tileColors.length);
+        tile.setAttribute('id', i);
+        tile.style.backgroundImage = tileColors[randomColor];
+        $('.game-area').append(tile);
+        tiles.push(tile);
     };
 }
 
@@ -47,12 +60,12 @@ tiles.forEach(tile => tile.addEventListener('dragstart', dragStart));
 tiles.forEach(tile => tile.addEventListener('drop', onDrop));
 tiles.forEach(tile => tile.addEventListener('dragend', dragEnd));
 
-let draggedTileColor; //variable to store the colour value of picked up tile
-let replacedTileColor; //variable to store the colour value of the tile which is replaced
-let idOfDraggedTile; //variable to store the id number of a picked up tile
-let idOfReplacedTile; //variable to store the id number of tile which is replaced
+let draggedTileColor;
+let replacedTileColor;
+let idOfDraggedTile;
+let idOfReplacedTile;
 
-//The two below preventDefault functions allow the drop event to be triggered in chrome
+//The two below preventDefault actions allow the drop event to be triggered in chrome
 //Fix from https://stackoverflow.com/questions/21339924/drop-event-not-firing-in-chrome
 $('.tile').on('dragenter', function (event) {
     event.preventDefault();
@@ -61,18 +74,16 @@ $('.tile').on('dragover', function (event) {
     event.preventDefault();
 })
 
-/**
- * logs the colour and id of a picked up tile
+/*
+ * Places the ID and colour of a picked up tile into variables
  */
 function dragStart() {
     draggedTileColor = this.style.backgroundImage;
     idOfDraggedTile = parseInt(this.id);
-    console.log(idOfDraggedTile);
 }
 
-/**
- * logs the colour and id of the tile to be replaced
- * switches the colours of the dragged and replaced tiles
+/*
+ * Swaps the colours of dragged and dropped tiles
  */
 function onDrop() {
     idOfReplacedTile = parseInt(this.id);
@@ -81,17 +92,24 @@ function onDrop() {
     tiles[idOfDraggedTile].style.backgroundImage = replacedTileColor;
 }
 
+/*
+ * Establish adjacent tiles by taking the (parsed)ID number of a dragged 
+ * tile and specifying the ID number of up, down, left & right tiles.
+ * If statement checks if move is legal or not, and changes (or doesn't change)
+ * tile colours accordingly.
+ */
 function dragEnd() {
     let adjacentTiles = [
-        idOfDraggedTile - playAreaWidth, // up (using playAreaWidth variable allows functionality to change board size instead of using intergers)
-        idOfDraggedTile + playAreaWidth, // down
-        idOfDraggedTile - 1, //left
-        idOfDraggedTile + 1 //right
+        idOfDraggedTile - playAreaWidth,
+        idOfDraggedTile + playAreaWidth,
+        idOfDraggedTile - 1,
+        idOfDraggedTile + 1
     ]
 
-    let legalMove = adjacentTiles.includes(idOfReplacedTile); //if the id number of a replaced tile is included in the adjacenttiles array, then legalMove is truthy
+    let legalMove = adjacentTiles.includes(idOfReplacedTile);
 
-    if ((idOfReplacedTile >= 0 && idOfReplacedTile <= 99) && legalMove) { //fix found  at https://stackoverflow.com/questions/14718561/how-to-check-if-a-number-is-between-two-values/14718577
+    //Below solution found  at https://stackoverflow.com/questions/14718561/how-to-check-if-a-number-is-between-two-values/14718577
+    if ((idOfReplacedTile >= 0 && idOfReplacedTile <= 99) && legalMove) {
         idOfReplacedTile = null;
         console.log('legal')
     } else if (idOfReplacedTile && !legalMove) {
@@ -104,9 +122,9 @@ function dragEnd() {
     }
 }
 
-/**
- * checks if timermoving variable is true, if it is, setinterval is started
- * timermoving variable is controlled by the menu buttons
+/*
+ * Checks if timermoving variable is true, if it is, setinterval is started
+ * Runs game over function once time reaches zero
  */
 function updateTimer() {
     if (!timerMoving)
@@ -122,16 +140,27 @@ function updateTimer() {
     else {
         $('.timer').html('0');
         gameOver();
-        //Add logic to stop game
     }
 }
 
+/*
+ * Prints current score to score counter in DOM
+ */
+function printScore() {
+    $('.score').html(score);
+}
+
+/*
+ * Stops timer, adds high scores to array, sorts high scores into decending,
+ * displays menu and prints high scores into DOM. Array sorting code from:
+ * https://www.w3schools.com/js/js_array_sort.asp
+ */
 function gameOver() {
     timerMoving = false;
     highScores.push(score);
     highScores.sort(function (a, b) {
         return b - a
-    }); //https://www.w3schools.com/js/js_array_sort.asp
+    });
     $('.resume-button').remove();
     $(".game-menu").fadeIn('medium');
     $(".game-menu").css('pointer-events', 'auto');
@@ -141,9 +170,10 @@ function gameOver() {
     $('.high-score-three').text(highScores[2]);
 }
 
-/**
- * loops through tiles on the game board, when an empty tile is found,
- * get the colour value of the above tile and replace the epmty tile with that colour
+/*
+ * Loops through tiles on the game board, when an empty tile is found,
+ * get the colour value of the above tile and replace the epmty tile with that colour.
+ * Then removes backgroundImage from that tile.
  */
 function repopulateEmptyTiles() {
     //Move tiles down
@@ -164,8 +194,13 @@ function repopulateEmptyTiles() {
     }
 }
 
+
+/*
+ * Checks for 5 horizontal matching colours (excluding last four rows to prevent wrapping)
+ * Adds 5 to score, removes background image.
+ */
 function checkFiveHorizontal() {
-    for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile four left of bottom right
+    for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) {
         let fiveHorizontal = [i, i + 1, i + 2, i + 3, i + 4];
         let selectedColor = tiles[i].style.backgroundImage;
         const blankTile = tiles[i].style.backgroundImage === '';
@@ -228,8 +263,12 @@ function checkFiveHorizontal() {
     }
 }
 
+/*
+ * Checks for 5 vertical matching colours (excluding last four vertical tiles to prevent wrapping)
+ * Adds 5 to score, removes background image.
+ */
 function checkFiveVertical() {
-    for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth; i++) { //this loop ends four tiles north of bottom right
+    for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth; i++) {
         let fiveVertical = [i, i + playAreaWidth, i + playAreaWidth * 2, i + playAreaWidth * 3, i + playAreaWidth * 4];
         let selectedColor = tiles[i].style.backgroundImage;
         const blankTile = tiles[i].style.backgroundImage === '';
@@ -246,8 +285,12 @@ function checkFiveVertical() {
     }
 }
 
+/*
+ * Checks for 4 horizontal matching colours (excluding last three rows to prevent wrapping)
+ * Adds 4 to score, removes background image.
+ */
 function checkFourHorizontal() {
-    for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) { //this loop stops at the tile three left of bottom right
+    for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) {
         let fourHorizontal = [i, i + 1, i + 2, i + 3];
         let selectedColor = tiles[i].style.backgroundImage;
         const blankTile = tiles[i].style.backgroundImage === '';
@@ -300,8 +343,12 @@ function checkFourHorizontal() {
     }
 }
 
+/*
+ * Checks for 4 vertical matching colours (excluding last four vertical tiles to prevent wrapping)
+ * Adds 4 to score, removes background image.
+ */
 function checkFourVertical() {
-    for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth; i++) { //this loop ends at the tile three north of bottom-right
+    for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth; i++) {
         let fourVertical = [i, i + playAreaWidth, i + playAreaWidth * 2, i + playAreaWidth * 3];
         let selectedColor = tiles[i].style.backgroundImage;
         const blankTile = tiles[i].style.backgroundImage === '';
@@ -318,8 +365,12 @@ function checkFourVertical() {
     }
 }
 
+/*
+ * Checks for 3 horizontal matching colours (excluding last two rows to prevent wrapping)
+ * Adds 3 to score, removes background image.
+ */
 function checkThreeHorizontal() {
-    for (i = 0; i < playAreaHeight * playAreaWidth - 2; i++) { //this loop stops at the tile two left of bottom right
+    for (i = 0; i < playAreaHeight * playAreaWidth - 2; i++) {
         let threeHorizontal = [i, i + 1, i + 2];
         let selectedColor = tiles[i].style.backgroundImage;
         const blankTile = tiles[i].style.backgroundImage === '';
@@ -362,8 +413,12 @@ function checkThreeHorizontal() {
     }
 }
 
+/*
+ * Checks for 3 vertical matching colours (excluding last two horizontal tiles to prevent wrapping)
+ * Adds 5 to score, removes background image.
+ */
 function checkThreeVertical() {
-    for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth; i++) { //this loop ends at the tile two north of bottom-right
+    for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth; i++) {
         let threeVertical = [i, i + playAreaWidth, i + playAreaWidth * 2];
         let selectedColor = tiles[i].style.backgroundImage;
         const blankTile = tiles[i].style.backgroundImage === '';
@@ -379,23 +434,6 @@ function checkThreeVertical() {
         }
     }
 }
-
-function printScore() {
-    $('.score').html(score);
-}
-
-window.setInterval(function () {
-    repopulateEmptyTiles()
-}, 150)
-
-window.setInterval(function () {
-    checkFiveHorizontal(),
-        checkFiveVertical(),
-        checkFourHorizontal(),
-        checkFourVertical(),
-        checkThreeHorizontal(),
-        checkThreeVertical()
-}, 100)
 
 //Menu
 
