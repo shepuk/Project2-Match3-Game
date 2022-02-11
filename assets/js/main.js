@@ -15,6 +15,8 @@ let uiSound;
 matchSound = new Audio("assets/sounds/match.wav");
 uiSound = new Audio("assets/sounds/ui.ogg");
 
+let isMenuShowing;
+
 const tileColors = [
     'url(assets/images/tiles/blue.png)',
     'url(assets/images/tiles/green.png)',
@@ -30,11 +32,11 @@ window.setInterval(function () {
 
 window.setInterval(function () {
     checkFiveHorizontal(),
-    checkFiveVertical(),
-    checkFourHorizontal(),
-    checkFourVertical(),
-    checkThreeHorizontal(),
-    checkThreeVertical()
+        checkFiveVertical(),
+        checkFourHorizontal(),
+        checkFourVertical(),
+        checkThreeHorizontal(),
+        checkThreeVertical()
 }, 100)
 
 /*
@@ -461,14 +463,19 @@ function startNewGame() {
     resumeButton[0].addEventListener("click", resumeGame);
 
     function resumeGame() {
-        timerMoving = true;
-        updateTimer();
-        $(".game-menu").fadeOut('medium');
-        $(".credits-menu").hide();
-        $(".game-menu").css('pointer-events', 'none');
-        $(".container-game-menu").css('pointer-events', 'none');
-        if (soundActive) {
-            uiSound.play();
+        if (isMenuShowing) {
+            timerMoving = true;
+            updateTimer();
+            $(".game-menu").fadeOut('medium');
+            isMenuShowing = false;
+            $(".credits-menu").hide();
+            $(".game-menu").css('pointer-events', 'none');
+            $(".container-game-menu").css('pointer-events', 'none');
+            if (soundActive) {
+                uiSound.play();
+            } else {
+                return;
+            }
         }
     }
 }
@@ -504,6 +511,7 @@ pauseButton[0].addEventListener("click", pauseGame);
 
 function pauseGame() {
     $(".game-menu").fadeIn('medium');
+    isMenuShowing = true;
     timerMoving = false;
     $(".game-menu").css('pointer-events', 'auto');
     $(".container-game-menu").css('pointer-events', 'auto');
@@ -518,7 +526,7 @@ creditsButton[0].addEventListener("click", showCredits);
 
 function showCredits() {
     if (soundActive) {
-            uiSound.play();
+        uiSound.play();
     }
     $('.credits-button').remove();
     $(".game-menu-credits > div:nth-child(1)").append('<div><button class="credits-toggler">CREDITS</button></div>');
