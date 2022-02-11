@@ -486,7 +486,7 @@ sixtyButton[0].addEventListener("click", gameTimeSixty);
 
 function gameTimeSixty() {
     gameMode = 60;
-    $(".mode60-button").css('background-color', '#405cf5');
+    $(".mode60-button").css('background-color', '#00ADB5');
     $(".mode30-button").css('background-color', '#21373f');
     if (soundActive) {
         uiSound.play();
@@ -499,7 +499,7 @@ thirtyButton[0].addEventListener("click", gameTimeThirty);
 function gameTimeThirty() {
     gameMode = 30;
     $(".mode60-button").css('background-color', '#21373f');
-    $(".mode30-button").css('background-color', '#405cf5');
+    $(".mode30-button").css('background-color', '#00ADB5');
     if (soundActive) {
         uiSound.play();
     }
