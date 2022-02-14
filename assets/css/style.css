@@ -235,6 +235,7 @@ body {
     opacity: 1;
     background-image: radial-gradient(#b9b9b9 1px, #EEEEEE 1px);
     background-size: 20px 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .instructions h3 {
@@ -292,6 +293,25 @@ button {
     margin: 10px;
     cursor: default;
 }
+
+/* ...............................................................FOOTER */
+.footer {
+    height: auto;
+    width: 100%;
+    padding: 5%;
+    background-color: #222831;
+    margin-top: 100px;
+}
+.footer h3 {
+    color: #EEEEEE;
+}
+
+.footer ul {
+    list-style-type: none;
+    color: #EEEEEE;
+}
+
+
 
 /* ...............................................................MEDIA QUERIES */
 @media only screen and (max-width: 1500px) {
