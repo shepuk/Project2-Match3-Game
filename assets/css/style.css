@@ -7,6 +7,16 @@ body {
     font-size: 20px;
 }
 
+a:link {
+    text-decoration: none;
+    color: #EEEEEE;
+  }
+  
+  a:visited {
+    text-decoration: none;
+    color: #EEEEEE;
+  }
+
 /* ...............................................................NAVBAR */
 .navbar {
     height: auto;
@@ -117,10 +127,6 @@ body {
     background-size: 56px 56px;
     background-position: 0 0, 28px 28px;
     box-shadow: rgb(0 0 0 / 50%) 4px -50px 336px -28px inset;
-    /*background: url(../images/backgroundart/menu_background.png) repeat 0 0;
-    overflow: hidden;
-    background-size: cover;
-    background-position: top;*/
 }
 
 .game-heading h1 {
@@ -294,6 +300,10 @@ button {
     cursor: default;
 }
 
+.contact-form {
+    color: #EEEEEE;
+}
+
 /* ...............................................................FOOTER */
 .footer {
     height: auto;
@@ -311,6 +321,15 @@ button {
     color: #EEEEEE;
 }
 
+/* ...............................................................CCNTACT PAGE */
+.contact-heading h2 {
+    font-family: Anton, sans-serif;
+    font-size: 140px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    color: #EEEEEE;
+}
 
 
 /* ...............................................................MEDIA QUERIES */

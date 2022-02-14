@@ -121,9 +121,6 @@ This was done via the following steps;
 [W3 Schools](https://www.w3schools.com/) with help on...
 
 ### Media
-[Pexels](https://www.pexels.com/) and [UnSplash](https://unsplash.com/) were used for their royalty-free imagery and videos.
-opengameart.org used for stone texture of tiles
-thenounproject used for tile iconography
 kenney.nl and opengameart.org used for sounds
 tiles from https://www.kenney.nl/assets/sokoban
 
