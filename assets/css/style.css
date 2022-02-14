@@ -18,6 +18,7 @@ body {
     align-content: flex-end;
     justify-content: flex-start;
     align-items: center;
+    padding-left: 30px;
 }
 
 .nav-link {
@@ -25,9 +26,14 @@ body {
     margin-right: 10px;
 }
 
+.nav-link:hover {
+    border-radius: 5px;
+    background-color: rgb(24, 24, 24)
+}
+
 .nav-link p {
     font-family: Assistant, sans-serif;
-    color: white;
+    color: #EEEEEE;
     font-size: 20px;
     font-weight: 500;
     text-transform: uppercase;
@@ -53,15 +59,10 @@ body {
     grid-area: 1 / 2 / 5 / 5;
     z-index: -1;
     border-radius: 5px;
-    background: #d9d9d9;
     background-color: #EEEEEE;
     opacity: 1;
     background-image: radial-gradient(#000000 1px, #d9d9d9 1px);
     background-size: 20px 20px;
-    /*background: url(../images/backgroundart/game_background.png) repeat 0 0;
-    overflow: hidden;
-    background-size: cover;
-    background-position: bottom;*/
 }
 
 /* ...............................................................GAME AREA */
@@ -135,8 +136,19 @@ body {
 }
 
 .game-menu-credits {
-    grid-area: 4 / 2 / 5 / 3;
+    grid-area: 4 / 2 / 5 / 4;
     z-index: 3;
+    display: flex;
+}
+
+.credits-menu p {
+    font-weight: 600;
+    font-size: 20px;
+    color: #EEEEEE;
+    margin-left: 10px;
+    margin: auto;
+    background-color: #222831;
+    border-radius: 5px;
 }
 
 .high-scores-container {
@@ -204,6 +216,45 @@ body {
     margin: auto;
 }
 
+/* ...............................................................HOW TO PLAY SECTION */
+.how-to-play {
+    background-color: #00ADB5;
+}
+
+.how-to-play h2 {
+    font-family: Anton, sans-serif;
+    font-size: 140px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.instructions {
+    border-radius: 5px;
+    background-color: #EEEEEE;
+    opacity: 1;
+    background-image: radial-gradient(#b9b9b9 1px, #EEEEEE 1px);
+    background-size: 20px 20px;
+}
+
+.instructions h3 {
+    font-family: Assistant, sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.demonstration-tiles {
+    display: flex;
+    align-items: center;
+}
+
+.demonstration-tiles img {
+    height: 35px;
+    width: 35px;
+}
+
 /* ...............................................................BUTTONS */
 button {
     background-color: #00ADB5;
@@ -237,6 +288,10 @@ button {
     margin-right: 0;
 }
 
+.instructions button {
+    margin: 10px;
+    cursor: default;
+}
 
 /* ...............................................................MEDIA QUERIES */
 @media only screen and (max-width: 1500px) {

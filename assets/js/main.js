@@ -531,6 +531,7 @@ function showCredits() {
     $('.credits-button').remove();
     $(".game-menu-credits > div:nth-child(1)").append('<div><button class="credits-toggler">CREDITS</button></div>');
     $(".game-menu-credits > div:nth-child(2)").append('<div class="credits-menu"><p>A Match-3 style game made by Paul Shepherd</p></div>');
+    $( ".credits-menu" ).parent().css( 'margin', 'auto auto auto 5px');
 
     //Credits button toggle code taken from https://www.w3schools.com/jquery/eff_toggle.asp
     $(".credits-toggler").click(function () {
