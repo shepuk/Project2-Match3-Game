@@ -229,7 +229,7 @@ a:link {
 
 .how-to-play h2 {
     font-family: Anton, sans-serif;
-    font-size: 140px;
+    font-size: 5em;
     margin-top: 20px;
     margin-bottom: 40px;
     text-transform: uppercase;
@@ -324,7 +324,7 @@ button {
 /* ...............................................................CCNTACT PAGE */
 .contact-heading h2 {
     font-family: Anton, sans-serif;
-    font-size: 140px;
+    font-size: 5em;
     margin-top: 20px;
     margin-bottom: 40px;
     text-transform: uppercase;
@@ -347,7 +347,7 @@ button {
 
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1200px) {
 
     .main-grid-area {
         display: grid;
@@ -358,10 +358,35 @@ button {
 
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 768px) {
 
     .game-area {
-        height: 300px;
-        width: 300px;
+        height: 90vw;
+        width: 90vw;
+    }
+
+    button {
+        font-size: smaller;
+        padding: 5px;
+        margin: 10px;
+    }
+
+    .main-menu button {
+        height: 60px;
+    }
+
+    .container-timer p {
+        font-size: 25px;
+        font-weight: 800;
+    }
+    
+    .container-score p {
+        font-size: 25px;
+        font-weight: 800;
+    }
+
+    .credits-menu p {
+        font-weight: 500;
+        font-size: 15px;
     }
 }
