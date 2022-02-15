@@ -13,23 +13,23 @@
 </head>
 
 <body>
-  <!---NAVBAR--->
+  <!--NAVBAR-->
   <div class="navbar text-center">
     <img src="assets/images/tiles/blue.png" alt="A blue coloured crate">
     <div class="nav-link text-center">
-      <a href="index.html">
-        <p>Play</p>
-      </a>
+      <p>
+        <a href="index.html">Play</a>
+      </p>
     </div>
     <img src="assets/images/tiles/red.png" alt="A red coloured crate">
     <div class="nav-link text-center">
-      <a href="contact.html">
-        <p>Contact</p>
-      </a>
+      <p>
+        <a href="contact.html">Contact</a>
+      </p>
     </div>
     <img src="assets/images/tiles/green.png" alt="A green coloured crate">
   </div>
-  <!---GAME CONTROL BUTTONS--->
+  <!--GAME CONTROL BUTTONS-->
   <div class="container main-menu">
     <div class="row">
       <div class="col d-flex justify-content-center">
@@ -49,7 +49,7 @@
       </div>
     </div>
   </div>
-  <!---GAME AREA & MENU--->
+  <!--GAME AREA & MENU-->
   <div class="main-grid-area">
     <div class="container-game-background">
     </div>
@@ -97,14 +97,16 @@
     </div>
     <div class="progress-bar"></div>
     <div class="instructions-link text-end">
-      <a href="index.html#how-to-play"><button>HOW TO PLAY</button></a>
+      <form style="display: inline" action="index.html#how-to-play" method="get">
+        <button>HOW TO PLAY</button>
+      </form>
     </div>
     <div class="game-menu-credits text-start">
       <div><button class="credits-button">CREDITS</button></div>
       <div></div>
     </div>
   </div>
-  <!---INSTRUCTIONS SECTION--->
+  <!--INSTRUCTIONS SECTION-->
   <div class="wave-seperator">
     <!---getwaves.io-->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -128,11 +130,11 @@
           <p>Use your mouse to pick up a tile and drop it on top of an adjacent tile.</p>
           <p>Tiles can only be moved one space in four directions:</p>
           <p><b><i class="fas fa-arrow-up"></i> UP
-              </br>
+              <br>
               <i class="fas fa-arrow-down"></i> DOWN
-              </br>
+              <br>
               <i class="fas fa-arrow-left"></i> LEFT
-              </br>
+              <br>
               <i class="fas fa-arrow-right"></i> RIGHT
             </b></p>
           <p>Making an incorrect move will not result in a penalty, but the tiles will not swap colours.</p>
@@ -140,7 +142,7 @@
           <p>When the timer reaches zero, the game will end.</p>
         </div>
         <div class="col-lg-6 col-md-12">
-          <h3>Buttons <i class="far fa-hand-point-up"></i></i></h3>
+          <h3>Buttons <i class="far fa-hand-point-up"></i></h3>
           <button>NEW GAME</button>
           <p>Begins a new game abd resets the score and timer.</p>
           <button>PAUSE</button>
@@ -154,7 +156,7 @@
         </div>
         <div class="col-lg-6 col-md-12">
           <h3>Match Up <i class="fas fa-th"></i></h3>
-          <p></p>There are 6 different colours in the game area:</p>
+          <p>There are 6 different colours in the game area:</p>
           <div class="demonstration-tiles">
             <img src="assets/images/tiles/blue.png" alt="A blue coloured crate">
             <img src="assets/images/tiles/red.png" alt="A red coloured crate">
@@ -201,38 +203,44 @@
         </div>
       </div>
     </div>
-    <!---FOOTER--->
+    <!--FOOTER-->
     <div class="footer">
       <div class="container-fluid">
         <div class="row">
           <div class="col text-start">
             <h3>Navigation</h3>
             <ul>
-              <a href="index.html">
-                <li>Home</li>
-              </a>
-              <a href="index.html#how-to-play">
-                <li>How To Play</li>
-              </a>
-              <a href="contact.html">
-                <li>Contact</li>
-              </a>
+              <li>
+                <p><a href="index.html">Home</a></p>
+              </li>
+              <li>
+                <p><a href="index.html#how-to-play">How To Play</a></p>
+              </li>
+              <li>
+                <p><a href="contact.html">Contact</a></p>
+              </li>
             </ul>
           </div>
           <div class="col text-start">
             <h3>Additional Credits</h3>
             <ul>
-              <li><a href="https://kenney.nl/" target="_blank">kenney.nl</a></li>
-              <li><a href="https://opengameart.org/" target="_blank">getwaves.io</a></li>
-              <li><a href="https://getwaves.io/" target="_blank">opengameart.org</a></li>
+              <li>
+                  <p><a href="https://kenney.nl/" target="_blank">kenney.nl</a></p>
+              </li>
+              <li>
+                  <p><a href="https://opengameart.org/" target="_blank">getwaves.io</a></p>
+              </li>
+              <li>
+                  <p><a href="https://getwaves.io/" target="_blank">opengameart.org</a></p>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
-  <script type="text/javascript" src="assets/js/main.js"></script>
+  <script src="assets/js/jquery-3.6.0.min.js"></script>
+  <script src="assets/js/main.js"></script>
   <link rel="stylesheet" href="assets/jquery-ui/jquery-ui.min.css">
   <script src="assets/jquery-ui/external/jquery/jquery.js"></script>
   <script src="assets/jquery-ui/jquery-ui.min.js"></script>

@@ -573,6 +573,8 @@ function toggleSound() {
 //bug resolved - sometimes not all tiles repopulate at the top row when making matches - resolved by moving the repopulate code out of the repopulateEmptyTiles first if statement and executing this function before the match detecting functions
 //bug resolved - credit menu flashed on screen as dom is loading, resolved by creating the credits menu from a button click rather than loading it in on initial load
 
+// Validator error - The element a must not appear as a descendant (or parent) of the button element. Resolved by placing button inside a form
+
 
 //TODO!
 
