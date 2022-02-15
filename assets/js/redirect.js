@@ -7,6 +7,6 @@ function updateTimer() {
         $('.countdown').html(countdown);
     else {
         $('.countdown').html('0');
-        window.location.replace("/");
+        window.location.replace("https://shepuk.github.io/Project2-Match3-Game/index.html");
     }
 }
