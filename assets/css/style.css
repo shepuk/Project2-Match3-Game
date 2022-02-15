@@ -71,7 +71,7 @@ a:link {
     border-radius: 5px;
     background-color: #EEEEEE;
     opacity: 1;
-    background-image: radial-gradient(#000000 1px, #d9d9d9 1px);
+    background-image: radial-gradient(#b9b9b9 1px, #EEEEEE 1px);
     background-size: 20px 20px;
 }
 

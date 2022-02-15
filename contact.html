@@ -10,15 +10,22 @@
     <script src="https://kit.fontawesome.com/2aeb1cf864.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Crate Match</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("user_oac6fLZnIj7C3fotGiKCL");
+        })();
+    </script>
 </head>
 
+<!---NAVBAR--->
 <body>
-
     <div class="navbar text-center">
         <img src="/assets/images/tiles/blue.png" alt="A blue coloured crate">
         <div class="nav-link text-center">
             <a href="index.html">
-                <p>Game</p>
+                <p>Play</p>
             </a>
         </div>
         <img src="/assets/images/tiles/red.png" alt="A red coloured crate">
@@ -29,7 +36,7 @@
         </div>
         <img src="/assets/images/tiles/green.png" alt="A green coloured crate">
     </div>
-
+    <!---CONTACT FORM SECTION--->
     <div class="container">
         <div class="row">
             <div class="col">
@@ -37,16 +44,33 @@
                     <h2>Contact</h2>
                 </div>
                 <div class="contact-form">
-                    <form>
-
-
+                    <form onsubmit="return sendMail(this);">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="name-description"
+                                required>
+                            <div id="name-description" class="form-text">Your name or online handle.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                            <div id="emailHelp" class="form-text">I'll need your email to get back in touch with you.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="enquiry" class="form-label">Enquiry</label>
+                            <textarea class="form-control" id="enquiry" rows="3" aria-describedby="enquiry-description"
+                                required></textarea>
+                            <div id="enquiry-description" class="form-text">Enter information about your enquiry here.
+                            </div>
+                        </div>
+                        <button type="submit">SUBMIT</button>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
-
+    <!---FOOTER SECTION--->
     <div class="footer">
         <div class="container-fluid">
             <div class="row">
@@ -75,12 +99,8 @@
             </div>
         </div>
     </div>
-
     </div>
-
-
-
-
+    <script type="text/javascript" src="assets/js/sendEmail.js"></script>
 </body>
 
 </html>
