@@ -3,7 +3,7 @@
 ## Interactive Front End Project
 
 ### Objectives
-- Build a Maach-3 style game using front end tecnology.
+- Build a Match-3 style game using front end tecnology.
 - JavaScript, jQuery, emailJS, CSS, HTML, Bootstrap
 - Goal - to build a fun, functional website with several features.
 - The content should be justified, accessible, responsive and presented logically.
@@ -188,8 +188,8 @@ This was done via the following steps;
 [W3 Schools](https://www.w3schools.com/) with help on...
 
 ### Media
-kenney.nl and opengameart.org used for sounds
-tiles from https://www.kenney.nl/assets/sokoban
+- [kenney.nl](https://kenney.nl/) used for tiles and UI sound.
+- [opengameart](https://opengameart.org/) used for match chime.
 
 ### Content
 All content was written by me.
