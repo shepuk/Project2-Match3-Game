@@ -7,9 +7,11 @@
 - The content should be justified, accessible, responsive and presented logically.
 
 ## Live Project
-[View the live project here.](Insert link to Github pages once done)
+[View the live project here.](https://shepuk.github.io/Project2-Match3-Game/)
 
 ## Screenshots
+![The Game Menu](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/screenshots/menuresponsivescreenshot.JPG?raw=true)
+![The Game Menu](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/screenshots/ingameresponsivescreenshot.JPG?raw=true)
 
 ## User Experience (UX)
 
