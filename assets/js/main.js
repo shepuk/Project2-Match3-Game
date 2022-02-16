@@ -18,26 +18,26 @@ uiSound = new Audio("assets/sounds/ui.ogg");
 let isMenuShowing;
 
 const tileColors = [
-    'url(assets/images/tiles/blue.png)',
-    'url(assets/images/tiles/green.png)',
-    'url(assets/images/tiles/silver.png)',
-    'url(assets/images/tiles/red.png)',
-    'url(assets/images/tiles/brown.png)',
-    'url(assets/images/tiles/yellow.png)'
-]
+    "url(assets/images/tiles/blue.png)",
+    "url(assets/images/tiles/green.png)",
+    "url(assets/images/tiles/silver.png)",
+    "url(assets/images/tiles/red.png)",
+    "url(assets/images/tiles/brown.png)",
+    "url(assets/images/tiles/yellow.png)"
+];
 
 window.setInterval(function () {
-    repopulateEmptyTiles()
-}, 150)
+    repopulateEmptyTiles();
+}, 150);
 
 window.setInterval(function () {
-    checkFiveHorizontal(),
-        checkFiveVertical(),
-        checkFourHorizontal(),
-        checkFourVertical(),
-        checkThreeHorizontal(),
-        checkThreeVertical()
-}, 100)
+    checkFiveHorizontal();
+    checkFiveVertical();
+    checkFourHorizontal();
+    checkFourVertical();
+    checkThreeHorizontal();
+    checkThreeVertical();
+}, 100);
 
 /*
  * Creates a 10x10 set of tiles (divs), assigns each an ID and random colour,
@@ -46,33 +46,34 @@ window.setInterval(function () {
 function createBoard() {
     for (let i = 0; i < playAreaHeight * playAreaWidth; i++) {
         const tile = document.createElement(`div`);
-        tile.classList.add('tile');
-        tile.setAttribute('draggable', true); //Draggable researched at https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
+        tile.classList.add("tile");
+        tile.setAttribute("draggable", true);
         let randomColor = Math.floor(Math.random() * tileColors.length);
-        tile.setAttribute('id', i);
+        tile.setAttribute("id", i);
         tile.style.backgroundImage = tileColors[randomColor];
-        $('.game-area').append(tile);
+        $(".game-area").append(tile);
         tiles.push(tile);
     };
 }
 
 createBoard();
 
-tiles.forEach(tile => tile.addEventListener('dragstart', dragStart));
-tiles.forEach(tile => tile.addEventListener('drop', onDrop));
-tiles.forEach(tile => tile.addEventListener('dragend', dragEnd));
+tiles.forEach(tile => tile.addEventListener("dragstart", dragStart));
+tiles.forEach(tile => tile.addEventListener("drop", onDrop));
+tiles.forEach(tile => tile.addEventListener("dragend", dragEnd));
 
 let draggedTileColor;
 let replacedTileColor;
 let idOfDraggedTile;
 let idOfReplacedTile;
 
-//The two below preventDefault actions allow the drop event to be triggered in chrome
-//Fix from https://stackoverflow.com/questions/21339924/drop-event-not-firing-in-chrome
-$('.tile').on('dragenter', function (event) {
+//The two below preventDefault actions allow the drop event to
+//be triggered in chrome. Fix from
+//https://stackoverflow.com/questions/21339924/drop-event-not-firing-in-chrome
+$(".tile").on("dragenter", function (event) {
     event.preventDefault();
 })
-$('.tile').on('dragover', function (event) {
+$(".tile").on("dragover", function (event) {
     event.preventDefault();
 })
 
@@ -95,7 +96,7 @@ function onDrop() {
 }
 
 /*
- * Establish adjacent tiles by taking the (parsed)ID number of a dragged 
+ * Establish adjacent tiles by taking the (parsed)ID number of a dragged
  * tile and specifying the ID number of up, down, left & right tiles.
  * If statement checks if move is legal or not, and changes (or doesn't change)
  * tile colours accordingly.
@@ -110,7 +111,6 @@ function dragEnd() {
 
     let legalMove = adjacentTiles.includes(idOfReplacedTile);
 
-    //Below solution found  at https://stackoverflow.com/questions/14718561/how-to-check-if-a-number-is-between-two-values/14718577
     if ((idOfReplacedTile >= 0 && idOfReplacedTile <= 99) && legalMove) {
         idOfReplacedTile = null;
     } else if (idOfReplacedTile && !legalMove) {
@@ -130,15 +130,15 @@ function updateTimer() {
     if (!timerMoving)
         return;
 
-    $('.progress-bar').css({
-        width: remainingTime * 100 / 60 + '%'
+    $(".progress-bar").css({
+        width: remainingTime * 100 / 60 + "%"
     });
 
     remainingTime = remainingTime - 1;
     if (remainingTime >= 0)
-        $('.timer').html(remainingTime);
+        $(".timer").html(remainingTime);
     else {
-        $('.timer').html('0');
+        $(".timer").html("0");
         gameOver();
     }
 }
@@ -147,7 +147,7 @@ function updateTimer() {
  * Prints current score to score counter in DOM
  */
 function printScore() {
-    $('.score').html(score);
+    $(".score").html(score);
 }
 
 /*
@@ -161,33 +161,34 @@ function gameOver() {
     highScores.sort(function (a, b) {
         return b - a
     });
-    $('.resume-button').remove();
-    $(".game-menu").fadeIn('medium');
-    $(".game-menu").css('pointer-events', 'auto');
-    $(".container-game-menu").css('pointer-events', 'auto');
-    $('.high-score-one').text(highScores[0]);
-    $('.high-score-two').text(highScores[1]);
-    $('.high-score-three').text(highScores[2]);
+    $(".resume-button").remove();
+    $(".game-menu").fadeIn("medium");
+    $(".game-menu").css("pointer-events", "auto");
+    $(".container-game-menu").css("pointer-events", "auto");
+    $(".high-score-one").text(highScores[0]);
+    $(".high-score-two").text(highScores[1]);
+    $(".high-score-three").text(highScores[2]);
 }
 
 /*
  * Loops through tiles on the game board, when an empty tile is found,
- * get the colour value of the above tile and replace the epmty tile with that colour.
- * Then removes backgroundImage from that tile.
+ * get the colour value of the above tile and replace the epmty tile
+ * with that colour. Then removes backgroundImage from that tile.
  */
 function repopulateEmptyTiles() {
     //Move tiles down
     for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth; i++) {
-        if (tiles[i + playAreaWidth].style.backgroundImage === '') {
-            tiles[i + playAreaWidth].style.backgroundImage = tiles[i].style.backgroundImage;
-            tiles[i].style.backgroundImage = '';
+        if (tiles[i + playAreaWidth].style.backgroundImage === "") {
+            tiles[i + playAreaWidth].style.backgroundImage =
+                tiles[i].style.backgroundImage;
+            tiles[i].style.backgroundImage = "";
         }
 
         const topRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         const isTopRow = topRow.includes(i);
 
         //Repopulate empty tiles with random colours
-        if (isTopRow && tiles[i].style.backgroundImage === '') {
+        if (isTopRow && tiles[i].style.backgroundImage === "") {
             let randomColor = Math.floor(Math.random() * tileColors.length);
             tiles[i].style.backgroundImage = tileColors[randomColor];
         }
@@ -196,14 +197,14 @@ function repopulateEmptyTiles() {
 
 
 /*
- * Checks for 5 horizontal matching colours (excluding last four rows to prevent wrapping)
- * Adds 5 to score, removes background image.
+ * Checks for 5 horizontal matching colours (excluding last four
+ * rows to prevent wrapping) Adds 5 to score, removes background image.
  */
 function checkFiveHorizontal() {
     for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) {
         let fiveHorizontal = [i, i + 1, i + 2, i + 3, i + 4];
         let selectedColor = tiles[i].style.backgroundImage;
-        const blankTile = tiles[i].style.backgroundImage === '';
+        const blankTile = tiles[i].style.backgroundImage === "";
 
         const lastFourRows = [
             playAreaWidth - 4,
@@ -250,28 +251,30 @@ function checkFiveHorizontal() {
 
         if (lastFourRows.includes(i)) continue;
 
-        if (fiveHorizontal.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
+        if (fiveHorizontal.every(index =>
+            tiles[index].style.backgroundImage ===  selectedColor && !blankTile)) {
             score += 5;
             printScore();
             if (soundActive) {
                 matchSound.play();
             }
             fiveHorizontal.forEach(index => {
-                tiles[index].style.backgroundImage = '';
+                tiles[index].style.backgroundImage = "";
             })
         }
     }
 }
 
 /*
- * Checks for 5 vertical matching colours (excluding last four vertical tiles to prevent wrapping)
- * Adds 5 to score, removes background image.
+ * Checks for 5 vertical matching colours (excluding last
+ * four vertical tiles to prevent wrapping). Adds 5 to score,
+ * removes background image.
  */
 function checkFiveVertical() {
     for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth; i++) {
         let fiveVertical = [i, i + playAreaWidth, i + playAreaWidth * 2, i + playAreaWidth * 3, i + playAreaWidth * 4];
         let selectedColor = tiles[i].style.backgroundImage;
-        const blankTile = tiles[i].style.backgroundImage === '';
+        const blankTile = tiles[i].style.backgroundImage === "";
         if (fiveVertical.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
             score += 5;
             printScore();
@@ -279,7 +282,7 @@ function checkFiveVertical() {
                 matchSound.play();
             }
             fiveVertical.forEach(index => {
-                tiles[index].style.backgroundImage = '';
+                tiles[index].style.backgroundImage = "";
             })
         }
     }
@@ -293,7 +296,7 @@ function checkFourHorizontal() {
     for (i = 0; i < playAreaHeight * playAreaWidth - 3; i++) {
         let fourHorizontal = [i, i + 1, i + 2, i + 3];
         let selectedColor = tiles[i].style.backgroundImage;
-        const blankTile = tiles[i].style.backgroundImage === '';
+        const blankTile = tiles[i].style.backgroundImage === "";
 
         const lastThreeRows = [
             playAreaWidth - 3,
@@ -337,7 +340,7 @@ function checkFourHorizontal() {
                 matchSound.play();
             }
             fourHorizontal.forEach(index => {
-                tiles[index].style.backgroundImage = '';
+                tiles[index].style.backgroundImage = "";
             })
         }
     }
@@ -351,7 +354,7 @@ function checkFourVertical() {
     for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth - playAreaWidth; i++) {
         let fourVertical = [i, i + playAreaWidth, i + playAreaWidth * 2, i + playAreaWidth * 3];
         let selectedColor = tiles[i].style.backgroundImage;
-        const blankTile = tiles[i].style.backgroundImage === '';
+        const blankTile = tiles[i].style.backgroundImage === "";
         if (fourVertical.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
             score += 4;
             printScore();
@@ -359,7 +362,7 @@ function checkFourVertical() {
                 matchSound.play();
             }
             fourVertical.forEach(index => {
-                tiles[index].style.backgroundImage = '';
+                tiles[index].style.backgroundImage = "";
             })
         }
     }
@@ -373,7 +376,7 @@ function checkThreeHorizontal() {
     for (i = 0; i < playAreaHeight * playAreaWidth - 2; i++) {
         let threeHorizontal = [i, i + 1, i + 2];
         let selectedColor = tiles[i].style.backgroundImage;
-        const blankTile = tiles[i].style.backgroundImage === '';
+        const blankTile = tiles[i].style.backgroundImage === "";
 
         const lastTwoRows = [
             playAreaWidth - 2,
@@ -407,7 +410,7 @@ function checkThreeHorizontal() {
                 matchSound.play();
             }
             threeHorizontal.forEach(index => {
-                tiles[index].style.backgroundImage = '';
+                tiles[index].style.backgroundImage = "";
             })
         }
     }
@@ -421,7 +424,7 @@ function checkThreeVertical() {
     for (i = 0; i < playAreaHeight * playAreaWidth - playAreaWidth - playAreaWidth; i++) {
         let threeVertical = [i, i + playAreaWidth, i + playAreaWidth * 2];
         let selectedColor = tiles[i].style.backgroundImage;
-        const blankTile = tiles[i].style.backgroundImage === '';
+        const blankTile = tiles[i].style.backgroundImage === "";
         if (threeVertical.every(index => tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
             score += 3;
             printScore();
@@ -429,7 +432,7 @@ function checkThreeVertical() {
                 matchSound.play();
             }
             threeVertical.forEach(index => {
-                tiles[index].style.backgroundImage = '';
+                tiles[index].style.backgroundImage = "";
             })
         }
     }
@@ -442,10 +445,10 @@ const startNewGameButton = document.getElementsByClassName("new-game-button");
 startNewGameButton[0].addEventListener("click", startNewGame);
 
 function startNewGame() {
-    $(".game-menu").fadeOut('medium');
+    $(".game-menu").fadeOut("medium");
     $(".credits-menu").hide();
-    $(".game-menu").css('pointer-events', 'none');
-    $(".container-game-menu").css('pointer-events', 'none');
+    $(".game-menu").css("pointer-events", "none");
+    $(".container-game-menu").css("pointer-events", "none");
     score = 0;
     printScore();
     $(".resume-container").remove();
@@ -466,11 +469,11 @@ function startNewGame() {
         if (isMenuShowing) {
             timerMoving = true;
             updateTimer();
-            $(".game-menu").fadeOut('medium');
+            $(".game-menu").fadeOut("medium");
             isMenuShowing = false;
             $(".credits-menu").hide();
-            $(".game-menu").css('pointer-events', 'none');
-            $(".container-game-menu").css('pointer-events', 'none');
+            $(".game-menu").css("pointer-events", "none");
+            $(".container-game-menu").css("pointer-events", "none");
             if (soundActive) {
                 uiSound.play();
             } else {
@@ -486,8 +489,8 @@ sixtyButton[0].addEventListener("click", gameTimeSixty);
 
 function gameTimeSixty() {
     gameMode = 60;
-    $(".mode60-button").css('background-color', '#00ADB5');
-    $(".mode30-button").css('background-color', '#21373f');
+    $(".mode60-button").css("background-color", "#00ADB5");
+    $(".mode30-button").css("background-color", "#21373f");
     if (soundActive) {
         uiSound.play();
     }
@@ -498,8 +501,8 @@ thirtyButton[0].addEventListener("click", gameTimeThirty);
 
 function gameTimeThirty() {
     gameMode = 30;
-    $(".mode60-button").css('background-color', '#21373f');
-    $(".mode30-button").css('background-color', '#00ADB5');
+    $(".mode60-button").css("background-color", "#21373f");
+    $(".mode30-button").css("background-color", "#00ADB5");
     if (soundActive) {
         uiSound.play();
     }
@@ -510,11 +513,11 @@ const pauseButton = document.getElementsByClassName("pause-button");
 pauseButton[0].addEventListener("click", pauseGame);
 
 function pauseGame() {
-    $(".game-menu").fadeIn('medium');
+    $(".game-menu").fadeIn("medium");
     isMenuShowing = true;
     timerMoving = false;
-    $(".game-menu").css('pointer-events', 'auto');
-    $(".container-game-menu").css('pointer-events', 'auto');
+    $(".game-menu").css("pointer-events", "auto");
+    $(".container-game-menu").css("pointer-events", "auto");
     if (soundActive) {
         uiSound.play();
     }
@@ -528,10 +531,10 @@ function showCredits() {
     if (soundActive) {
         uiSound.play();
     }
-    $('.credits-button').remove();
+    $(".credits-button").remove();
     $(".game-menu-credits > div:nth-child(1)").append('<div><button class="credits-toggler">CREDITS</button></div>');
     $(".game-menu-credits > div:nth-child(2)").append('<div class="credits-menu"><p>A Match-3 style game made by Paul Shepherd</p></div>');
-    $(".credits-menu").parent().css('margin', 'auto auto auto 5px');
+    $(".credits-menu").parent().css("margin", "auto auto auto 5px");
 
     //Credits button toggle code taken from https://www.w3schools.com/jquery/eff_toggle.asp
     $(".credits-toggler").click(function () {
@@ -550,7 +553,7 @@ function toggleSound() {
     if (!soundActive) {
         soundActive = true;
         $(".sound-toggle-button").text("");
-        $('.sound-toggle-button').append('<i class="fas fa-volume-up"></i>')
+        $(".sound-toggle-button").append('<i class="fas fa-volume-up"></i>')
         if (soundActive) {
             uiSound.play();
         }
@@ -559,7 +562,7 @@ function toggleSound() {
     if (soundActive) {
         soundActive = false;
         $(".sound-toggle-button").text("");
-        $('.sound-toggle-button').append('<i class="fas fa-volume-mute"></i>')
+        $(".sound-toggle-button").append('<i class="fas fa-volume-mute"></i>')
         if (soundActive) {
             uiSound.play();
         }
@@ -573,11 +576,15 @@ function toggleSound() {
 //bug resolved - sometimes not all tiles repopulate at the top row when making matches - resolved by moving the repopulate code out of the repopulateEmptyTiles first if statement and executing this function before the match detecting functions
 //bug resolved - credit menu flashed on screen as dom is loading, resolved by creating the credits menu from a button click rather than loading it in on initial load
 
+//Solution for glitching corner [0] tile found at
+    //https://stackoverflow.com/questions/14718561/how-to-check-if-a-number-is-between-two-values/14718577
+
 // Validator error - The element a must not appear as a descendant (or parent) of the button element. Resolved by placing button inside a form
+//update to this error - using a form refreshed the page, removing high scores. Styles a <p> element to look like a button instead
 
+//Draggable researched at https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
 
-//TODO!
-
+//TODO
 //CURRENT DESIRED FEATURE LIST
 //stop board creating before player clicks new game
 //animate feedback - notify players of moves and non-valid moves etc.

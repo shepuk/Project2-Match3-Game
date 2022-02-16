@@ -1,8 +1,10 @@
 # Match 3 Game
 
-## Milestone Project Two
-- This project involves building a fun, Match 3 ytpe game using front end technologies. Additionally, content should be justified, functional, presented logically, accessible and responsive.
-- Technologies - JavaScript, jQuery, HTML, CSS, Bootstrap 
+## Interactive Front End Project
+- Build a Maach-3 style game using front end tecnology.
+- JavaScript, jQuery, APIs, CSS, HTML, Bootstrap
+- Goal - to build a fun, functional website with several features.
+- The content should be justified, accessible, responsive and presented logically.
 
 ## Live Project
 [View the live project here.](Insert link to Github pages once done)
