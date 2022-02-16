@@ -109,9 +109,9 @@
 ### Target audience appeal & user journey
 - Thanks to easy controls and clear UI, the game and website successfuly appeal to a large audience. Careful selection was taken to use images which can be identified without their colour - allowing visually impaired users to play as well.
 #### A typical user journey should involve reading the rules starting the game, then playing 1 or more rounds of Crate Match.
-    - Elements and sections are easily accesible, clear and provide the exact information they are intended to. 
+- Elements and sections are easily accesible, clear and provide the exact information they are intended to. 
 #### Additionally, users may want to learn more about the creator or get in touch via the contact page.
-    - A functional contact page (made with MailJS) allows users to get in touch with the website creator as designed.
+- A functional contact page (made with MailJS) allows users to get in touch with the website creator as designed.
 
 ### User Stories
 
