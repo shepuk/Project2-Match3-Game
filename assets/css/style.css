@@ -99,6 +99,8 @@ a:link {
     width: 10%;
     border-radius: 5px;
     background-size: cover;
+    touch-action: none;
+    user-select: none;
 }
 
 .game-area div:hover {

@@ -34,14 +34,14 @@
 -  ### Design
     -   #### Colour Scheme
         - A simple three-tone colour scheme was decided from the beginning, allowing the game interface to stand out more:
-        - ![Colours used in website design](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/screenshots/colours.JPG?raw=true)
+![Colours used in website design](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/screenshots/colours.JPG?raw=true)
     -   #### Typography
         - Anton and Assistant were chosen as my primary heading and text fonts.
         - Anton is a bold, blocky font which matches an 'industrial' feel to the shipping crates in the Crate Match imagery.
         - Assistant is a very readable sans-serif font which compliments the Anton font and allows for great versatility thanks to a wide selection of font weights.
     -   #### Imagery
         - Images are only used throughout the website for the tiles on the game board:
-        - ![Crate designs for the Crate Match game](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/screenshots/crates.JPG?raw=true)
+![Crate designs for the Crate Match game](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/screenshots/crates.JPG?raw=true)
         - Elsewhere, CSS patterns were used to enhance the look and feel of the website. For example, [Magic Pattern Toolbox](https://www.magicpattern.design/tools/css-backgrounds) was used to provide patterned background imagery for both the game and menus. [Get Waves](https://getwaves.io/) was used for a 'wavey' seperator between the game and how to play sections.
 
 - ### Wireframes
@@ -81,6 +81,7 @@
         - Bootstrap 5 is used for responsive design throughout the website.
 
     - ### Features to implement in the future
+        - Mobile support - I plan to add mobile support in the future, with a library such as [Interact JS.](https://interactjs.io/)
         - 'L' shaped matches would allow for a greater range of gameplay possibilities.
         - Powerups would also help to increase fun-factor and user choice.
         - Currently, the board is  created once, during initial DOM load. This is to prevent score immidiately increasing upon a fresh game load every time. With some additional logic, I would like to create the game board without any matches resulting in instant score accumulation instantly. I could also then trigger a new board shuffle when new game is clicked.
@@ -103,39 +104,55 @@
 
 
 ## Testing
-#### A mixture of manual and validator testing was performed on the website throughout development and after completion....
+#### A mixture of manual and validator testing was performed on the website throughout development and after completion.
 
 ### Target audience appeal
-- Text here
+- Thanks to easy controls and clear UI, the game and website successfuly appeal to a large audience. Careful selection was taken to use images which can be identified without their colour - allowing visually impaired users to play as well.
 
 ### User journey
-- Text here
+#### A typical user journey should involve reading the rules starting the game, then playing 1 or more rounds of Crate Match.
+    - aaaaaaaaa
+    
+#### Additionally, users may want to learn more about the creator or get in touch via the contact page.
+    - aaaaaaaa
 
 ### User Stories
 
 - ### First time visitor goals
-    1. Goal 1
-        - Text here
-    2. Goal 22
-        - Text here
-
+    1. As a new visitor, I want to learn about the website and game.
+        - The aim and use of the website is made immidiately apparent as the game interface dominates the screen upon initial load. A how to play button is handily placed on the game interface to allow users to learn how to interact with the game, and the aim.
+    2. As a new visitor, I want to learn how to play the game.
+        - A comprehensive how to play section is linked and included on the home page. Here, the player can find out about objectives, controls, score and more.
+    3. As a new visitor, I want to have fun and play the game. 
+        - Time was put into the game and its design to make it fun to play. A score counter provides satisfaction to inputs, the timer keeps the action flowing and a high score counter adds replay value.
 - ### Returning Visitor Goals
-    1. Goal 1
-        - Text here
-    2. Goal 2
-        - Text here
+    1. As a returning visitor I want to beat my high scores and find a challenge.
+        - A top-3 high score system allows users to record multiple scores and also gives players a milestone to reach next time they play.
+    2. As a returning visitor I want to find out about the creator and get in touch with them.
+        - A prominent contact link in the navigation bar points users to a contact page where they can find out more and get in touch with the website creator.
 
 ### Testing the code
-Throughout the project, I used the W3C validator tools to find and fix various typos or errors in my code.
--   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)
--   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)
+Throughout the project, I used validator tools to find and fix various typos or errors in my code.
+##### [JSLint](https://www.jslint.com/)
+##### [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)
+##### [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)
 
 #### Bug examples
-1. Bug
-    - Resolution
+1. Bug: In the repopoulateEmptyTiles function, errors were thrown when the loop was firing.
+    - Cause & fix: Checking playAreaWidth on the bottom row caused the error because this row did not physically exist below the bottom row. Fixed by ending the loop one row from the bottom.
+2. Bug: Tile colour change was not working when switching tiles with first tile in the array (top left)
+    -  Cause & fix: When parseInt-ing a tile ID and checking it, this was returning falsy on the first tile in the array (0 = falsy/NaN). Rather than checking for wheather the id of a tile is truthy, I specified the range (<= 0, >+ 99).
+3. Bug: Sometimes not all tiles were repopulating at the top row when making matches.
+    - Cause & fix: When checking the top row for empties, I was checking extra spaces which wrapped round to the next row and prevented the tiles above to be repopulated. Resolved by correcting this.
+4. Bug: Credit menu popup flashed on screen as DOM was loading
+    - Cause & fix: Because the credits popup was removed by jQuery, the DOm would load first, followed by the script tag. I resolved this by creating the credits menu from a button click rather than loading it in the DOM straight away.
+5. Validator error - The element a must not appear as a descendant (or parent) of the button element. 
+    - Resolved by placing button inside a form initially. However this then caused the page to refresh when clicked, resulting in high scores being lost. Final fix was to replace the button with a p element and style that element to look exactly like the other buttons.
 
 #### Existing bugs
-1. Any bugs left?
+1. Some validator issues still exist from JSLint.
+    - Lines being longer than 80 characters. Cutting these lines down makes the code less readable so I will ignore these for now. The line with the longest character count in main.js is 118 characters. Only 18 lines of code exceed 80 characters.
+    - Using simgle quotes instead of doubles. All of my code uses double quotes apart from jQuery DOM manipulation code in which I am creating an emelent with an attribute. Using incorrect quotes here would result in broken code.
 
 ## Setup, Backups & Depoyment
 [Gitpod](https://www.gitpod.io/) was used as my primary IDE.
@@ -158,7 +175,13 @@ This was done via the following steps;
 
 ## Credits
 
-### Bootstrap 5 components used
+### Specific Cases
+- Solution for glitching corner [0] tile found at [Stack Overflow](https://stackoverflow.com/questions/14718561/how-to-check-if-a-number-is-between-two-values/14718577)
+- Draggable researched at [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute)
+- Credits button toggle code taken from [W3 Schools](https://www.w3schools.com/jquery/eff_toggle.asp)
+- Array sorting code from [W3 Schools](https://www.w3schools.com/js/js_array_sort.asp)
+- preventDefault code, allowing the drop event to be triggered in chrome. Fix from [Stack Overflow](https://stackoverflow.com/questions/21339924/drop-event-not-firing-in-chrome)
+- Some game logic help from [YouTube](https://www.youtube.com/watch?v=XD5sZWxwJUk&ab_channel=CodewithAniaKub%C3%B3w)
 
 ### Documentation & Online Help
 [Mozilla MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/column-count) for...

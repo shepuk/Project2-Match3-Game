@@ -568,25 +568,3 @@ function toggleSound() {
         }
     }
 }
-
-
-
-//bug resolved - in the repopoulate empty tiles function, errors were thrown when the loop was firing. Because + playareawidth on the bottom row did not exist. Fixed by ending the loop one row from bottom
-//Bug found - colour change not working when switching tiles with first tile in the array (top left) - RESOLVED rather than checking for wheather the id of a tile is truthy, I specified the range (<= 0, >+ 99) as 0 returns as NaN when using parseInt
-//bug resolved - sometimes not all tiles repopulate at the top row when making matches - resolved by moving the repopulate code out of the repopulateEmptyTiles first if statement and executing this function before the match detecting functions
-//bug resolved - credit menu flashed on screen as dom is loading, resolved by creating the credits menu from a button click rather than loading it in on initial load
-
-//Solution for glitching corner [0] tile found at
-    //https://stackoverflow.com/questions/14718561/how-to-check-if-a-number-is-between-two-values/14718577
-
-// Validator error - The element a must not appear as a descendant (or parent) of the button element. Resolved by placing button inside a form
-//update to this error - using a form refreshed the page, removing high scores. Styles a <p> element to look like a button instead
-
-//Draggable researched at https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
-
-//TODO
-//CURRENT DESIRED FEATURE LIST
-//stop board creating before player clicks new game
-//animate feedback - notify players of moves and non-valid moves etc.
-//Animate tiles - both swapping tiles and hovering over tiles
-//contact page using email API
