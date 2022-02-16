@@ -106,15 +106,12 @@
 ## Testing
 #### A mixture of manual and validator testing was performed on the website throughout development and after completion.
 
-### Target audience appeal
+### Target audience appeal & user journey
 - Thanks to easy controls and clear UI, the game and website successfuly appeal to a large audience. Careful selection was taken to use images which can be identified without their colour - allowing visually impaired users to play as well.
-
-### User journey
 #### A typical user journey should involve reading the rules starting the game, then playing 1 or more rounds of Crate Match.
-    - aaaaaaaaa
-    
+    - Elements and sections are easily accesible, clear and provide the exact information they are intended to. 
 #### Additionally, users may want to learn more about the creator or get in touch via the contact page.
-    - aaaaaaaa
+    - A functional contact page (made with MailJS) allows users to get in touch with the website creator as designed.
 
 ### User Stories
 
@@ -152,7 +149,8 @@ Throughout the project, I used validator tools to find and fix various typos or 
 #### Existing bugs
 1. Some validator issues still exist from JSLint.
     - Lines being longer than 80 characters. Cutting these lines down makes the code less readable so I will ignore these for now. The line with the longest character count in main.js is 118 characters. Only 18 lines of code exceed 80 characters.
-    - Using simgle quotes instead of doubles. All of my code uses double quotes apart from jQuery DOM manipulation code in which I am creating an emelent with an attribute. Using incorrect quotes here would result in broken code.
+    - Using simgle quotes instead of doubles. All of my code uses double quotes apart from jQuery DOM manipulation code in which I am creating an emelent with an attribute. Using incorrect quotes here would result in broken code. I could use a seperate line of code to add a class, avoinding the JSLint errors - but doing this in a single line is better.
+    - Lastly, JSLint shows an error concerning a for loop in my createBoard function. Upon researching this, [JSLint does not reccomend the use of for loops.](https://www.jslint.com/help.html#for)
 
 ## Setup, Backups & Depoyment
 [Gitpod](https://www.gitpod.io/) was used as my primary IDE.
