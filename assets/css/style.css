@@ -163,7 +163,6 @@ a:link {
     height: 100%;
     width: 100%;
     text-align: center;
-    background-color: #91dad8;
     opacity: 1;
     background-color: #00ADB5;
     opacity: 1;
@@ -176,6 +175,13 @@ a:link {
 .game-heading h1 {
     font-family: Anton, sans-serif;
     font-size: 10vw;
+    margin-top: 20px;
+}
+
+.game-heading p {
+    font-family: Assistant, sans-serif;
+    font-size: 3vw;
+    text-transform: uppercase;
     margin-top: 20px;
     margin-bottom: 40px;
 }
@@ -429,7 +435,7 @@ button {
 
     .main-grid-area {
         display: grid;
-        grid-template-columns: 0.1fr 1fr 1fr 1fr 0.1fr;
+        grid-template-columns: 0fr 1fr 1fr 1fr 0fr;
         grid-template-rows: 1fr auto;
         gap: 3px 3px;
     }
@@ -473,6 +479,14 @@ button {
     .credits-menu p {
         font-weight: 500;
         font-size: 15px;
+    }
+
+    .game-heading h1 {
+        font-size: 15vw;
+    }
+    
+    .game-heading p {
+        font-size: 5vw;
     }
 
     .navbar {
