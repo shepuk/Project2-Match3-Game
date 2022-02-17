@@ -1,10 +1,59 @@
 # CRATE MATCH
 
+- [CRATE MATCH](#crate-match)
+  * [Interactive Front End Project](#interactive-front-end-project)
+    + [Objectives](#objectives)
+  * [Live Project](#live-project)
+  * [Screenshots](#screenshots)
+  * [User Experience (UX)](#user-experience--ux-)
+    + [Target Audience](#target-audience)
+    + [User journey](#user-journey)
+    + [User stories](#user-stories)
+      - [New Visitor Goals](#new-visitor-goals)
+      - [Returning Visitor Goals](#returning-visitor-goals)
+    + [Design](#design)
+      - [Colour Scheme](#colour-scheme)
+      - [Typography](#typography)
+      - [Imagery](#imagery)
+    + [Wireframes](#wireframes)
+  * [Features](#features)
+    + [Game & Logic](#game---logic)
+    + [Game UI](#game-ui)
+    + [Game Audio](#game-audio)
+    + [Other Features](#other-features)
+    + [Features to implement in the future](#features-to-implement-in-the-future)
+    + [Technologies / Libraries / Programs](#technologies---libraries---programs)
+  * [Testing](#testing)
+      - [A mixture of manual and validator testing was performed on the website throughout development and after completion.](#a-mixture-of-manual-and-validator-testing-was-performed-on-the-website-throughout-development-and-after-completion)
+    + [Target audience appeal & user journey](#target-audience-appeal---user-journey)
+      - [A typical user journey should involve reading the rules starting the game, then playing 1 or more rounds of Crate Match.](#a-typical-user-journey-should-involve-reading-the-rules-starting-the-game--then-playing-1-or-more-rounds-of-crate-match)
+      - [Additionally, users may want to learn more about the creator or get in touch via the contact page.](#additionally--users-may-want-to-learn-more-about-the-creator-or-get-in-touch-via-the-contact-page)
+    + [User Stories](#user-stories)
+    + [First time visitor goals](#first-time-visitor-goals)
+    + [Returning Visitor Goals](#returning-visitor-goals-1)
+    + [Testing the code](#testing-the-code)
+        * [[JSLint](https://www.jslint.com/)](#-jslint--https---wwwjslintcom--)
+        * [[W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)](#-w3c-markup-validator--https---jigsaww3org-css-validator--validate-by-input-)
+        * [[W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)](#-w3c-css-validator--https---jigsaww3org-css-validator--validate-by-input-)
+      - [Bug examples](#bug-examples)
+      - [JSLint errors](#jslint-errors)
+      - [Manual Testing](#manual-testing)
+  * [Setup, Backups & Depoyment](#setup--backups---depoyment)
+  * [Credits](#credits)
+    + [Specific Cases](#specific-cases)
+    + [Documentation & Online Help](#documentation---online-help)
+    + [Media](#media)
+    + [Content](#content)
+    + [Acknowledgements](#acknowledgements)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 ## Interactive Front End Project
 
 ### Objectives
+- Design and produce a desktop browser app.
 - Build a Match-3 style game using front end tecnology.
-- JavaScript, jQuery, emailJS, CSS, HTML, Bootstrap
+- Use of JavaScript, jQuery, emailJS, CSS, HTML, Bootstrap
 - Goal - to build a fun, functional website with several features.
 - The content should be justified, accessible, responsive and presented logically.
 
@@ -18,7 +67,7 @@
 ## User Experience (UX)
 
 -   ### Target Audience
-    - The target audience for this app is broad, and can be enjoyed by all ages.
+    - The target audience for this app is broad, and can be enjoyed by all ages. Initially the website is designed for desktop users, as the game functionality requires more time to make compatible with mobile devices.
 -   ### User journey
     - A typical user journey should involve reading the rules starting the game, then playing 1 or more rounds of Crate Match.
     - Additionally, users may want to learn more about the creator or get in touch via the contact page.
@@ -148,15 +197,20 @@ Throughout the project, I used validator tools to find and fix various typos or 
     - Resolved by placing button inside a form initially. However this then caused the page to refresh when clicked, resulting in high scores being lost. Final fix was to replace the button with a p element and style that element to look exactly like the other buttons.
 
 #### JSLint errors
-- [main.js results]()
+- [main.js results](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/JSLintResults/mainJSLint%20results.JPG)
     - Lines being longer than 80 characters. Cutting these lines down makes the code less readable so I will ignore these for now. The line with the longest character count in main.js is 118 characters. Only 18 lines of code exceed 80 characters.
     - Using single quotes instead of doubles. All of my code uses double quotes apart from jQuery DOM manipulation code in which I am creating an emelent with an attribute. Using incorrect quotes here would result in broken code. I could use a seperate line of code to add a class, avoinding the JSLint errors - but doing this in a single line is better.
     - JSLint shows an error concerning a for loop in my createBoard function. Upon researching this, [JSLint does not reccomend the use of for loops.](https://www.jslint.com/help.html#for) However the code executes as intended and shows no errors.
-- [redirect.js results]()
+- [redirect.js results](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/JSLintResults/redirectJSLintreport.JPG)
     - One line longer than 80 characters here. Again, the code is more readable this way and in total the JS file is only 14 lines long - no need to change this.
-- [sendEmail.js results]()
+- [sendEmail.js results](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/JSLintResults/sendemailJSLintresults.JPG)
     - 'Undeclared console' issue provided by JSLint as it is global and JSLint does not take this into account.
     - Also showing an 'expected }' error - this code was provided by EmailJS documentation and I will keep the code correct to match their specification.
+
+#### Manual Testing
+- Multiple browsers and devices were used to test the application.
+- Modern browsers such as Chrome, Firefox and Edge display and load content as expected. Older browsers such as Internet Explorer are not compatible with this website - due to features such as drag and drop, and some styling choices.
+- Mobile browsers handle styling and responsive design very well. However due to drag and drop not being supported by mobile browsers, the actual game is not playable until I incorporate this functionality. Again, this was known before I started and the application was designed to be desktop-first from the beginning.
 
 ## Setup, Backups & Depoyment
 [Gitpod](https://www.gitpod.io/) was used as my primary IDE.
