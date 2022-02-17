@@ -10,13 +10,13 @@
     <script src="https://kit.fontawesome.com/2aeb1cf864.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Crate Match</title>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         (function () {
             emailjs.init("user_oac6fLZnIj7C3fotGiKCL");
         })();
     </script>
+    <script src="assets/js/mobileNav.js"></script>
 </head>
 
 <body>
@@ -24,17 +24,39 @@
     <div class="navbar text-center">
         <img src="assets/images/tiles/blue.png" alt="A blue coloured crate">
         <div class="nav-link text-center">
-            <a href="index.html">
-                <p>Play</p>
-            </a>
+            <p>
+                <a href="index.html">Crate Match</a>
+            </p>
+        </div>
+        <img src="assets/images/tiles/yellow.png" alt="A red coloured crate">
+        <div class="nav-link text-center">
+            <p>
+                <a href="index.html#how-to-play">How To Play</a>
+            </p>
         </div>
         <img src="assets/images/tiles/red.png" alt="A red coloured crate">
         <div class="nav-link text-center">
-            <a href="contact.html">
-                <p>Contact</p>
-            </a>
+            <p>
+                <a href="contact.html">Contact</a>
+            </p>
         </div>
         <img src="assets/images/tiles/green.png" alt="A green coloured crate">
+    </div>
+    <!--MOBILE NAVBAR-->
+    <div class="mobile-nav">
+        <div>
+            <p>
+                <a href="index.html">Crate Match</a>
+            </p>
+        </div>
+        <div id="mob-nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#how-to-play">How To Play</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="openLinks()">
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
     <!--CONTACT FORM SECTION-->
     <div class="container">
@@ -73,41 +95,29 @@
             </div>
         </div>
     </div>
-    <!--FOOTER SECTION-->
+    <!--FOOTER-->
     <div class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col text-start">
-                    <h3>Navigation</h3>
-                    <ul>
-                        <li>
-                            <p><a href="index.html">Home</a></p>
-                        </li>
-                        <li>
-                            <p><a href="index.html#how-to-play">How To Play</a></p>
-                        </li>
-                        <li>
-                            <p><a href="contact.html">Contact</a></p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col text-start">
-                    <h3>Additional Credits</h3>
-                    <ul>
-                        <li>
-                            <p><a href="https://kenney.nl/" target="_blank">kenney.nl</a></p>
-                        </li>
-                        <li>
-                            <p><a href="https://opengameart.org/" target="_blank">getwaves.io</a></p>
-                        </li>
-                        <li>
-                            <p><a href="https://getwaves.io/" target="_blank">opengameart.org</a></p>
-                        </li>
-                    </ul>
-                </div>
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-lg-4 col-md-12">
+              <h3>Navigation</h3>
+              <p><a href="index.html">Home</a></p>
+              <p><a href="index.html#how-to-play">How To Play</a></p>
+              <p><a href="contact.html">Contact</a></p>
             </div>
+            <div class="col-lg-4 col-md-12">
+              <h3>Social</h3>
+              <p><a href="https://github.com/shepuk"><i class="fab fa-github"></i></a></p>
+            </div>
+            <div class="col-lg-4 col-md-12">
+              <h3>Additional Credits</h3>
+              <p><a href="https://kenney.nl/" target="_blank">kenney.nl</a></p>
+              <p><a href="https://opengameart.org/" target="_blank">getwaves.io</a></p>
+              <p><a href="https://getwaves.io/" target="_blank">opengameart.org</a></p>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
     <script src="assets/js/sendEmail.js"></script>
 </body>
 

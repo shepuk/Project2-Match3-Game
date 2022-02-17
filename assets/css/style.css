@@ -30,7 +30,6 @@ a:link {
     align-items: center;
     padding-left: 30px;
 }
-
 .nav-link {
     margin-left: 10px;
     margin-right: 10px;
@@ -54,6 +53,49 @@ a:link {
     height: 10px;
     width: 10px;
 }
+
+/* ...............................................................MOBILE NAVBAR */
+  .mobile-nav {
+    display: none;
+    background-color: #222831;
+    position: relative;
+    font-family: Assistant, sans-serif;
+    color: #EEEEEE;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 0 !important;
+  }
+
+  #mob-nav-links {
+    font-size: 15px;
+    font-weight: 200;
+    text-transform: none;
+  }
+  
+  .mobile-nav #mob-nav-links {
+    display: none;
+  }
+  
+  .mobile-nav a {
+    color: #EEEEEE;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+  }
+  
+  .mobile-nav a.icon {
+    background: #222831;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  #mob-nav-links a:hover {
+      background-color: rgb(24, 24, 24);
+  }
 
 /* ...............................................................CSS GRID LAYOUT */
 .main-grid-area {
@@ -332,16 +374,27 @@ button {
     background-color: #222831;
     margin-top: 100px;
 }
+
 .footer h3 {
     color: #EEEEEE;
+    text-decoration: underline;
+    font-size: 20px;
+    font-weight: 500;
 }
 
-.footer ul {
-    list-style-type: none;
+.footer p {
     color: #EEEEEE;
+    font-size: 15px;
+    font-weight: 300;
+    margin: 10px;
 }
 
-/* ...............................................................CCNTACT PAGE */
+.footer p:hover {
+    border-radius: 5px;
+    background-color: rgb(24, 24, 24)
+}
+
+/* ...............................................................CONTACT PAGE */
 .contact-heading h2 {
     font-family: Anton, sans-serif;
     font-size: 5em;
@@ -420,6 +473,14 @@ button {
     .credits-menu p {
         font-weight: 500;
         font-size: 15px;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: block;
     }
 }
 

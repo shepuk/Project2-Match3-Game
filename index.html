@@ -9,6 +9,7 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/2aeb1cf864.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/mobileNav.js"></script>
   <title>Crate Match</title>
 </head>
 
@@ -18,7 +19,13 @@
     <img src="assets/images/tiles/blue.png" alt="A blue coloured crate">
     <div class="nav-link text-center">
       <p>
-        <a href="index.html">Play</a>
+        <a href="index.html">Crate Match</a>
+      </p>
+    </div>
+    <img src="assets/images/tiles/yellow.png" alt="A red coloured crate">
+    <div class="nav-link text-center">
+      <p>
+        <a href="index.html#how-to-play">How To Play</a>
       </p>
     </div>
     <img src="assets/images/tiles/red.png" alt="A red coloured crate">
@@ -28,6 +35,22 @@
       </p>
     </div>
     <img src="assets/images/tiles/green.png" alt="A green coloured crate">
+  </div>
+  <!--MOBILE NAVBAR-->
+  <div class="mobile-nav">
+    <div>
+      <p>
+        <a href="index.html">Crate Match</a>
+      </p>
+    </div>
+    <div id="mob-nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#how-to-play">How To Play</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="openLinks()">
+      <i class="fa fa-bars"></i>
+    </a>
   </div>
   <!--GAME CONTROL BUTTONS-->
   <div class="container main-menu">
@@ -144,13 +167,13 @@
         <div class="col-lg-6 col-md-12">
           <h3>Buttons <i class="far fa-hand-point-up"></i></h3>
           <button>NEW GAME</button>
-          <p>Begins a new game abd resets the score and timer.</p>
+          <p>Begins a new game and resets the score and timer.</p>
           <button>PAUSE</button>
           <p>Pauses the current game and stops the timer.</p>
           <button>RESUME</button>
           <p>Resumes a paused game and starts the timer.</p>
           <button>30</button><button>60</button>
-          <p>Changes game timer to 30 or 60 seconds.</p>
+          <p>Changes the game timer to 30 or 60 seconds.</p>
           <button><i class="fas fa-volume-mute"></i></button>
           <p>Turns sound effects on / off.</p>
         </div>
@@ -181,14 +204,14 @@
             <img src="assets/images/tiles/red.png" alt="A red coloured crate">
             <img src="assets/images/tiles/red.png" alt="A red coloured crate">
             <img src="assets/images/tiles/red.png" alt="A red coloured crate">
-            <p style>Three points</p>
+            <p> Three points</p>
           </div>
           <div class="demonstration-tiles">
             <img src="assets/images/tiles/red.png" alt="A red coloured crate">
             <img src="assets/images/tiles/red.png" alt="A red coloured crate">
             <img src="assets/images/tiles/red.png" alt="A red coloured crate">
             <img src="assets/images/tiles/red.png" alt="A red coloured crate">
-            <p style>Four points</p>
+            <p> Four points</p>
           </div>
           <div class="demonstration-tiles">
             <img src="assets/images/tiles/red.png" alt="A red coloured crate">
@@ -196,44 +219,32 @@
             <img src="assets/images/tiles/red.png" alt="A red coloured crate">
             <img src="assets/images/tiles/red.png" alt="A red coloured crate">
             <img src="assets/images/tiles/red.png" alt="A red coloured crate">
-            <p style>Five points</p>
+            <p> Five points</p>
           </div>
-          <p>The top three high score will be displayed in the game interface.</p>
+          <p>The top three high scores will be displayed in the game interface.</p>
           <p>Try to get the highest score you can!</p>
         </div>
       </div>
     </div>
     <!--FOOTER-->
     <div class="footer">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col text-start">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-lg-4 col-md-12">
             <h3>Navigation</h3>
-            <ul>
-              <li>
-                <p><a href="index.html">Home</a></p>
-              </li>
-              <li>
-                <p><a href="index.html#how-to-play">How To Play</a></p>
-              </li>
-              <li>
-                <p><a href="contact.html">Contact</a></p>
-              </li>
-            </ul>
+            <p><a href="index.html">Home</a></p>
+            <p><a href="index.html#how-to-play">How To Play</a></p>
+            <p><a href="contact.html">Contact</a></p>
           </div>
-          <div class="col text-start">
+          <div class="col-lg-4 col-md-12">
+            <h3>Social</h3>
+            <p><a href="https://github.com/shepuk"><i class="fab fa-github"></i></a></p>
+          </div>
+          <div class="col-lg-4 col-md-12">
             <h3>Additional Credits</h3>
-            <ul>
-              <li>
-                <p><a href="https://kenney.nl/" target="_blank">kenney.nl</a></p>
-              </li>
-              <li>
-                <p><a href="https://opengameart.org/" target="_blank">getwaves.io</a></p>
-              </li>
-              <li>
-                <p><a href="https://getwaves.io/" target="_blank">opengameart.org</a></p>
-              </li>
-            </ul>
+            <p><a href="https://kenney.nl/" target="_blank">kenney.nl</a></p>
+            <p><a href="https://opengameart.org/" target="_blank">getwaves.io</a></p>
+            <p><a href="https://getwaves.io/" target="_blank">opengameart.org</a></p>
           </div>
         </div>
       </div>
