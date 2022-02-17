@@ -13,7 +13,7 @@
 
 ## Screenshots
 ![The Game Menu](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/screenshots/menuresponsivescreenshot.JPG?raw=true)
-![The Game Menu](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/screenshots/ingameresponsivescreenshot.JPG?raw=true)
+![The Game board](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/screenshots/ingameresponsivescreenshot.JPG?raw=true)
 
 ## User Experience (UX)
 
@@ -46,9 +46,9 @@
 
 - ### Wireframes
     - Final designs did not differ greatly from my initial wireframing. Thanks to a simple layout and well thought-out logic I was able to match the design closely. The main change was moving the menu interface out of the main game area. This was done for two reasons - to reduce the complexity and the layerd nature of the menu, and to make the UI more accessible.
-    - [Home page wireframe]()
-    - [Game menu wireframe]()
-    - [Game interface wireframe]()
+    - [Home page wireframe](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/wireframes/wireframe1.JPG)
+    - [Game menu wireframe](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/wireframes/wireframe2.JPG)
+    - [Game interface wireframe](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/wireframes/wireframe3.JPG)
 
 
 - ## Features
@@ -147,11 +147,16 @@ Throughout the project, I used validator tools to find and fix various typos or 
 5. Validator error - The element a must not appear as a descendant (or parent) of the button element. 
     - Resolved by placing button inside a form initially. However this then caused the page to refresh when clicked, resulting in high scores being lost. Final fix was to replace the button with a p element and style that element to look exactly like the other buttons.
 
-#### Existing bugs
-1. Some validator issues still exist from JSLint.
+#### JSLint errors
+- [main.js results]()
     - Lines being longer than 80 characters. Cutting these lines down makes the code less readable so I will ignore these for now. The line with the longest character count in main.js is 118 characters. Only 18 lines of code exceed 80 characters.
-    - Using simgle quotes instead of doubles. All of my code uses double quotes apart from jQuery DOM manipulation code in which I am creating an emelent with an attribute. Using incorrect quotes here would result in broken code. I could use a seperate line of code to add a class, avoinding the JSLint errors - but doing this in a single line is better.
-    - Lastly, JSLint shows an error concerning a for loop in my createBoard function. Upon researching this, [JSLint does not reccomend the use of for loops.](https://www.jslint.com/help.html#for) However the code executes 
+    - Using single quotes instead of doubles. All of my code uses double quotes apart from jQuery DOM manipulation code in which I am creating an emelent with an attribute. Using incorrect quotes here would result in broken code. I could use a seperate line of code to add a class, avoinding the JSLint errors - but doing this in a single line is better.
+    - JSLint shows an error concerning a for loop in my createBoard function. Upon researching this, [JSLint does not reccomend the use of for loops.](https://www.jslint.com/help.html#for) However the code executes as intended and shows no errors.
+- [redirect.js results]()
+    - One line longer than 80 characters here. Again, the code is more readable this way and in total the JS file is only 14 lines long - no need to change this.
+- [sendEmail.js results]()
+    - 'Undeclared console' issue provided by JSLint as it is global and JSLint does not take this into account.
+    - Also showing an 'expected }' error - this code was provided by EmailJS documentation and I will keep the code correct to match their specification.
 
 ## Setup, Backups & Depoyment
 [Gitpod](https://www.gitpod.io/) was used as my primary IDE.
