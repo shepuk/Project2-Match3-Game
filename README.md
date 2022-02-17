@@ -24,17 +24,10 @@
     + [Features to implement in the future](#features-to-implement-in-the-future)
     + [Technologies / Libraries / Programs](#technologies---libraries---programs)
   * [Testing](#testing)
-      - [A mixture of manual and validator testing was performed on the website throughout development and after completion.](#a-mixture-of-manual-and-validator-testing-was-performed-on-the-website-throughout-development-and-after-completion)
-    + [Target audience appeal & user journey](#target-audience-appeal---user-journey)
-      - [A typical user journey should involve reading the rules starting the game, then playing 1 or more rounds of Crate Match.](#a-typical-user-journey-should-involve-reading-the-rules-starting-the-game--then-playing-1-or-more-rounds-of-crate-match)
-      - [Additionally, users may want to learn more about the creator or get in touch via the contact page.](#additionally--users-may-want-to-learn-more-about-the-creator-or-get-in-touch-via-the-contact-page)
     + [User Stories](#user-stories)
     + [First time visitor goals](#first-time-visitor-goals)
     + [Returning Visitor Goals](#returning-visitor-goals-1)
     + [Testing the code](#testing-the-code)
-        * [[JSLint](https://www.jslint.com/)](#-jslint--https---wwwjslintcom--)
-        * [[W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)](#-w3c-markup-validator--https---jigsaww3org-css-validator--validate-by-input-)
-        * [[W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)](#-w3c-css-validator--https---jigsaww3org-css-validator--validate-by-input-)
       - [Bug examples](#bug-examples)
       - [JSLint errors](#jslint-errors)
       - [Manual Testing](#manual-testing)
@@ -211,6 +204,7 @@ Throughout the project, I used validator tools to find and fix various typos or 
 - Multiple browsers and devices were used to test the application.
 - Modern browsers such as Chrome, Firefox and Edge display and load content as expected. Older browsers such as Internet Explorer are not compatible with this website - due to features such as drag and drop, and some styling choices.
 - Mobile browsers handle styling and responsive design very well. However due to drag and drop not being supported by mobile browsers, the actual game is not playable until I incorporate this functionality. Again, this was known before I started and the application was designed to be desktop-first from the beginning.
+- Friends and family were utilised to test links, spelling, design and responsiveness.
 
 ## Setup, Backups & Depoyment
 [Gitpod](https://www.gitpod.io/) was used as my primary IDE.
