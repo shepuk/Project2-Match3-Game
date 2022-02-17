@@ -45,8 +45,10 @@
         - Elsewhere, CSS patterns were used to enhance the look and feel of the website. For example, [Magic Pattern Toolbox](https://www.magicpattern.design/tools/css-backgrounds) was used to provide patterned background imagery for both the game and menus. [Get Waves](https://getwaves.io/) was used for a 'wavey' seperator between the game and how to play sections.
 
 - ### Wireframes
-    - View wireframe [here](Insert link to wireframe here)
-    - Text here
+    - Final designs did not differ greatly from my initial wireframing. Thanks to a simple layout and well thought-out logic I was able to match the design closely. The main change was moving the menu interface out of the main game area. This was done for two reasons - to reduce the complexity and the layerd nature of the menu, and to make the UI more accessible.
+    - [Home page wireframe]()
+    - [Game menu wireframe]()
+    - [Game interface wireframe]()
 
 
 - ## Features
@@ -98,7 +100,6 @@
 - [Git](https://git-scm.com/) was used via the terminal for version control.
 - [Github](https://github.com/) was used to host and store the project files.
 - [Gitpod](https://www.gitpod.io/) was my primary IDE during project development.
-- [Balsamiq](https://balsamiq.com/) was used to create wireframes for the project.
 - [Coolors](https://coolors.co/) is a palette tool which groups complimentary colours together and was used to select my main website colours.
 - [Am I Responsive](http://ami.responsivedesign.is/) is a tool which allowed me to see and show pages of the website in different screen sizes.
 
@@ -150,7 +151,7 @@ Throughout the project, I used validator tools to find and fix various typos or 
 1. Some validator issues still exist from JSLint.
     - Lines being longer than 80 characters. Cutting these lines down makes the code less readable so I will ignore these for now. The line with the longest character count in main.js is 118 characters. Only 18 lines of code exceed 80 characters.
     - Using simgle quotes instead of doubles. All of my code uses double quotes apart from jQuery DOM manipulation code in which I am creating an emelent with an attribute. Using incorrect quotes here would result in broken code. I could use a seperate line of code to add a class, avoinding the JSLint errors - but doing this in a single line is better.
-    - Lastly, JSLint shows an error concerning a for loop in my createBoard function. Upon researching this, [JSLint does not reccomend the use of for loops.](https://www.jslint.com/help.html#for)
+    - Lastly, JSLint shows an error concerning a for loop in my createBoard function. Upon researching this, [JSLint does not reccomend the use of for loops.](https://www.jslint.com/help.html#for) However the code executes 
 
 ## Setup, Backups & Depoyment
 [Gitpod](https://www.gitpod.io/) was used as my primary IDE.
