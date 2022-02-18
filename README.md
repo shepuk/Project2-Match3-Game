@@ -91,6 +91,7 @@
     - [Home page wireframe](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/wireframes/wireframe1.JPG)
     - [Game menu wireframe](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/wireframes/wireframe2.JPG)
     - [Game interface wireframe](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/wireframes/wireframe3.JPG)
+    - [Early design for game tiles](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/wireframes/tileDesign.JPG
 
 
 - ## Features
@@ -206,6 +207,8 @@ Throughout the project, I used validator tools to find and fix various typos or 
 
 #### Manual Testing
 - Multiple browsers and devices were used to test the application.
+- The deployed website was also tested againt the development version to ensure everythign worked as expected.
+- BrowserStack was used for their large variety of testing functionalty. I was able to test the app on over 50 devices including OS, tablets and mobiles.
 - Modern browsers such as Chrome, Firefox and Edge display and load content as expected. Older browsers such as Internet Explorer are not compatible with this website - due to features such as drag and drop, and some styling choices.
 - Mobile browsers handle styling and responsive design very well. Thanks to some built-in JavaScript handlers, I was also able to incorporate a control scheme for mobile users.
 - Friends and family were utilised to test links, spelling, design and responsiveness.

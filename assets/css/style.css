@@ -5,7 +5,6 @@ body {
     background-color: #393E46;
     font-family: Assistant, sans-serif;
     font-size: 20px;
-    touch-action: manipulation;
 }
 
 a:link {
@@ -120,7 +119,6 @@ a:link {
     opacity: 1;
     background-image: radial-gradient(#b9b9b9 1px, #EEEEEE 1px);
     background-size: 20px 20px;
-    touch-action: manipulation;
 }
 
 /* ...............................................................GAME AREA */
@@ -140,7 +138,6 @@ a:link {
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.5);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    touch-action: manipulation;
 }
 
 .game-area div {
