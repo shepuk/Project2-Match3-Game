@@ -66,7 +66,6 @@ tiles.forEach(tile => tile.addEventListener("dragend", dragEnd));
 //Mobile control
 tiles.forEach(tile => tile.addEventListener("touchstart", touchStart));
 tiles.forEach(tile => tile.addEventListener("touchend", touchEnd));
-tiles.forEach(tile => tile.addEventListener("touchmove", touchMove));
 
 //Used for PC control
 let draggedTileColor;
