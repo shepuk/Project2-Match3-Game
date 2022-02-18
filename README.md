@@ -91,7 +91,7 @@
     - [Home page wireframe](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/wireframes/wireframe1.JPG)
     - [Game menu wireframe](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/wireframes/wireframe2.JPG)
     - [Game interface wireframe](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/wireframes/wireframe3.JPG)
-    - [Early design for game tiles](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/wireframes/tileDesign.JPG
+    - [Early design for game tiles](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/wireframes/tileDesign.JPG)
 
 
 - ## Features
