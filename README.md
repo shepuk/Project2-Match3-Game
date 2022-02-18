@@ -177,7 +177,7 @@ Throughout the project, I used validator tools to find and fix various typos or 
 ##### [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)
 ##### [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)
 
-#### Bug examples
+#### Resolved bug examples
 1. Bug: In the repopoulateEmptyTiles function, errors were thrown when the loop was firing.
     - Cause & fix: Checking playAreaWidth on the bottom row caused the error because this row did not physically exist below the bottom row. Fixed by ending the loop one row from the bottom.
 2. Bug: Tile colour change was not working when switching tiles with first tile in the array (top left)
@@ -188,6 +188,10 @@ Throughout the project, I used validator tools to find and fix various typos or 
     - Cause & fix: Because the credits popup was removed by jQuery, the DOm would load first, followed by the script tag. I resolved this by creating the credits menu from a button click rather than loading it in the DOM straight away.
 5. Validator error - The element a must not appear as a descendant (or parent) of the button element. 
     - Resolved by placing button inside a form initially. However this then caused the page to refresh when clicked, resulting in high scores being lost. Final fix was to replace the button with a p element and style that element to look exactly like the other buttons.
+
+#### Known bug examples
+1. Mobile/touchscreens - Audio does not play. I beleive this is due to the event listener waiting for a mouseclick. Although this does not seem to matter for the button functionality in general, the audio experiences some issues with this.
+2. Touch screen zooming. Quickly tapping twice in the game will call for a screen zoom on some mobile devices. Zooming can be disabled site-wide in the HTML viewport settings but this is not very user friendly.
 
 #### JSLint errors
 - [main.js results](https://github.com/shepuk/Project2-Match3-Game/blob/main/assets/images/JSLintResults/mainJSLint%20results.JPG)
