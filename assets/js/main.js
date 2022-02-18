@@ -62,10 +62,64 @@ tiles.forEach(tile => tile.addEventListener("dragstart", dragStart));
 tiles.forEach(tile => tile.addEventListener("drop", onDrop));
 tiles.forEach(tile => tile.addEventListener("dragend", dragEnd));
 
+tiles.forEach(tile => tile.addEventListener("touchstart", touchStart));
+//tiles.forEach(tile => tile.addEventListener("touchmove", touchMove));
+tiles.forEach(tile => tile.addEventListener("touchend", touchEnd));
+//tiles.forEach(tile => tile.addEventListener("touchcancel", touchCancel));
+
 let draggedTileColor;
 let replacedTileColor;
 let idOfDraggedTile;
 let idOfReplacedTile;
+
+//Used for mobile control
+let firstSelectedColor;
+let secondSelectedColor;
+let idOfFirstSelectedTile;
+let idOfSecondSelectedTile;
+
+function touchStart() {
+    if (!firstSelectedColor) {
+        firstSelectedColor = this.style.backgroundImage;
+        idOfFirstSelectedTile = parseInt(this.id);
+    } else if (firstSelectedColor && !secondSelectedColor) {
+        secondSelectedColor = this.style.backgroundImage;
+        idOfSecondSelectedTile = parseInt(this.id);
+    } else if (firstSelectedColor && secondSelectedColor) {
+        firstSelectedColor = this.style.backgroundImage;
+        idOfFirstSelectedTile = parseInt(this.id);
+        secondSelectedColor = "";
+        idOfSecondSelectedTile = "";
+    }
+}
+
+function touchEnd() {
+
+    if (firstSelectedColor && secondSelectedColor) {
+        tiles[idOfFirstSelectedTile].style.backgroundImage = secondSelectedColor;
+        tiles[idOfSecondSelectedTile].style.backgroundImage = firstSelectedColor;
+        
+        let adjacentTiles = [
+            idOfFirstSelectedTile - playAreaWidth,
+            idOfFirstSelectedTile + playAreaWidth,
+            idOfFirstSelectedTile - 1,
+            idOfFirstSelectedTile + 1
+        ]
+    
+        let legalMove = adjacentTiles.includes(idOfSecondSelectedTile);
+    
+        if ((idOfFirstSelectedTile >= 0 && idOfSecondSelectedTile <= 99) && legalMove) {
+            idOfSecondSelectedTile = null;
+        } else if (idOfSecondSelectedTile && !legalMove) {
+            tiles[idOfSecondSelectedTile].style.backgroundImage = secondSelectedColor;
+            tiles[idOfFirstSelectedTile].style.backgroundImage = firstSelectedColor;
+        } else {
+            tiles[idOfFirstSelectedTile].style.backgroundImage = firstSelectedColor;
+            tiles[idOfSecondSelectedTile].style.backgroundImage = secondSelectedColor;
+        }
+
+    }
+}
 
 //The two below preventDefault actions allow the drop event to
 //be triggered in chrome. Fix from
@@ -252,7 +306,7 @@ function checkFiveHorizontal() {
         if (lastFourRows.includes(i)) continue;
 
         if (fiveHorizontal.every(index =>
-            tiles[index].style.backgroundImage ===  selectedColor && !blankTile)) {
+            tiles[index].style.backgroundImage === selectedColor && !blankTile)) {
             score += 5;
             printScore();
             if (soundActive) {
