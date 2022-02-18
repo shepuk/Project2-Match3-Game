@@ -80,6 +80,9 @@ let secondSelectedColor;
 let idOfFirstSelectedTile;
 let idOfSecondSelectedTile;
 
+/*
+ * Logic for selecting and storing two tiles attributes into memory
+ */
 function touchStart() {
     if (!firstSelectedColor) {
         firstSelectedColor = this.style.backgroundImage;
@@ -95,6 +98,10 @@ function touchStart() {
     }
 }
 
+/*
+ * If two tiles have been selected, the code will execute.
+ * Checks if a legal selection has been made and changes colours accordingly.
+ */
 function touchEnd() {
 
     if (firstSelectedColor && secondSelectedColor) {
