@@ -44,7 +44,7 @@
 ## Interactive Front End Project
 
 ### Objectives
-- Design and produce a desktop browser app.
+- Design and produce an interactive app.
 - Build a Match-3 style game using front end tecnology.
 - Use of JavaScript, jQuery, emailJS, CSS, HTML, Bootstrap
 - Goal - to build a fun, functional website with several features.
@@ -60,7 +60,7 @@
 ## User Experience (UX)
 
 -   ### Target Audience
-    - The target audience for this app is broad, and can be enjoyed by all ages. Initially the website is designed for desktop users, as the game functionality requires more time to make compatible with mobile devices.
+    - The target audience for this app is broad, and can be enjoyed by all ages. Initially the website is designed for desktop users, but some research allowed me to corporate controls for mobile devices. As Match-3 games are so popular on mobile, this allows a far greater reach for my target audience.
 -   ### User journey
     - A typical user journey should involve reading the rules starting the game, then playing 1 or more rounds of Crate Match.
     - Additionally, users may want to learn more about the creator or get in touch via the contact page.
@@ -97,6 +97,7 @@
     - The game and website have a rich selection of features:
 
     - ### Game & Logic
+        - Compatibility with both mobile and desktop browsers.
         - A fully interactive 10 x 10 game board, in which users can drag and drop board tiles with responsive feedback.
         - Tiles can be moved one space, and only swap with adjacent tiles. Illegal moves result in no swap.
         - A row of three, four or five horizontal/vertical tiles results in a match. Matched tiles are destroyed.
@@ -125,7 +126,6 @@
         - Bootstrap 5 is used for responsive design throughout the website.
 
     - ### Features to implement in the future
-        - Mobile support - I plan to add mobile support in the future, with a library such as [Interact JS.](https://interactjs.io/)
         - 'L' shaped matches would allow for a greater range of gameplay possibilities.
         - Powerups would also help to increase fun-factor and user choice.
         - Currently, the board is  created once, during initial DOM load. This is to prevent score immidiately increasing upon a fresh game load every time. With some additional logic, I would like to create the game board without any matches resulting in instant score accumulation instantly. I could also then trigger a new board shuffle when new game is clicked.
@@ -203,7 +203,7 @@ Throughout the project, I used validator tools to find and fix various typos or 
 #### Manual Testing
 - Multiple browsers and devices were used to test the application.
 - Modern browsers such as Chrome, Firefox and Edge display and load content as expected. Older browsers such as Internet Explorer are not compatible with this website - due to features such as drag and drop, and some styling choices.
-- Mobile browsers handle styling and responsive design very well. However due to drag and drop not being supported by mobile browsers, the actual game is not playable until I incorporate this functionality. Again, this was known before I started and the application was designed to be desktop-first from the beginning.
+- Mobile browsers handle styling and responsive design very well. Thanks to some built-in JavaScript handlers, I was also able to incorporate a control scheme for mobile users.
 - Friends and family were utilised to test links, spelling, design and responsiveness.
 
 ## Setup, Backups & Depoyment

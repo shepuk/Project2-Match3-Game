@@ -58,15 +58,17 @@ function createBoard() {
 
 createBoard();
 
+//PC control
 tiles.forEach(tile => tile.addEventListener("dragstart", dragStart));
 tiles.forEach(tile => tile.addEventListener("drop", onDrop));
 tiles.forEach(tile => tile.addEventListener("dragend", dragEnd));
 
+//Mobile control
 tiles.forEach(tile => tile.addEventListener("touchstart", touchStart));
-//tiles.forEach(tile => tile.addEventListener("touchmove", touchMove));
 tiles.forEach(tile => tile.addEventListener("touchend", touchEnd));
-//tiles.forEach(tile => tile.addEventListener("touchcancel", touchCancel));
+tiles.forEach(tile => tile.addEventListener("touchmove", touchMove));
 
+//Used for PC control
 let draggedTileColor;
 let replacedTileColor;
 let idOfDraggedTile;
@@ -128,6 +130,10 @@ $(".tile").on("dragenter", function (event) {
     event.preventDefault();
 })
 $(".tile").on("dragover", function (event) {
+    event.preventDefault();
+})
+
+$(".tile").on("touchmove", function (event) {
     event.preventDefault();
 })
 
