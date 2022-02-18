@@ -99,7 +99,6 @@ a:link {
 
 /* ...............................................................CSS GRID LAYOUT */
 .main-grid-area {
-    touch-action: manipulation;
     display: grid;
     grid-template-columns: 0.1fr 1fr 1fr 1fr 0.1fr;
     grid-template-rows: auto auto auto auto;
@@ -144,6 +143,7 @@ a:link {
     background-size: cover;
     touch-action: none;
     user-select: none;
+    touch-action: manipulation;
 }
 
 .game-area div:hover {
